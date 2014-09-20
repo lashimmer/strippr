@@ -11,6 +11,7 @@ $.ajax({//initial ajax call
 var renderStrip=function(data){
 	var content="";
 	for (var i = 0; i < data.length; i++) {
+		if (data[i].title == "null") break;
 		content +=
 		'<div class="strip">'+
         '<div class="head">'+
