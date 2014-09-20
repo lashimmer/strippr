@@ -17,6 +17,7 @@ var bodyParser = require('body-parser');
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.set('view engine', 'html');
 var port = process.env.PORT || 80; 		// set our port
 
 
@@ -86,8 +87,7 @@ router.route('/api/strips')
 		strip.date = req.body.date;
 		strip.description = req.body.description;
 		strip.title = req.body.title;
-		strip.comic = req.body.comic;
-		strip.likes = 0;
+		strip.comic = req.body.comic
 		//save the bear and check for errors
 		strip.save(function(err) {
 			if (err)
