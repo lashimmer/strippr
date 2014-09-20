@@ -60,14 +60,13 @@ router.route('/users')
 		
 	// })
 
-	.get(function(req, res) {
-		res.json({ message: 'all the users!!' });
-		// User.find(function(err, users) {
-		// 	if (err)
-		// 		res.send(err);
+	.get(function(req, res) {;
+		User.find(function(err, users) {
+			if (err)
+				res.send(err);
 
-		// 	res.json(users);
-		// });
+			res.json(users);
+		});
 	});
 
 
