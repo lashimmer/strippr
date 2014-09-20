@@ -1,5 +1,5 @@
 $.ajax({//ajax call 1
-    url:page1.php,
+    url:"api/strips",
     dataType:json,
     data:{"date":"something"},
     success: function(data1){
