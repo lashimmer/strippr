@@ -20,6 +20,9 @@ html, body {
   -webkit-border-radius:2px;
   -moz-border-radius:2px;
   -ms-border-radius:2px;
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow:         3px 3px 5px 6px #ccc;
 }
 .strip {
   width:100%;
@@ -41,7 +44,8 @@ html, body {
   height:100%; 
   position:absolute;
   right: 10px;
-  top: 10px;
+  padding-top: 10px;
+  top: 0;
 }
 .likes img {
   vertical-align:middle;
