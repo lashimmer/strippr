@@ -132,11 +132,16 @@ router.route('/api/strips/:strip_id')
 
 router.route('/api/getstripsbydate')
 	.get(function(req, res){
-		var returnedStrips = [];
+		var toReturn = [];
 		var minDate = new Date("January 1, 1970 00:00:00");
-		var strip = Strip.find({ date: {$gt: minDate, $lt: req.query.date} }).sort({date: -1}).exec(function(err, docs) {
-			res.json(docs);
-	});
+		var strips = Strip.find({ date: {$gt: minDate, $lt: req.query.date} }).sort({date: -1}).exec(function(err, docs) {
+			for(i = 0; i < req.query.number; i++){
+			toReturn[i] = docs[i];
+			}
+			res.json(toReturn);
+
+		});
+
 });
 
 router.route('/api/comics')
