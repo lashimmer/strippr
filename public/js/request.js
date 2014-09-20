@@ -2,7 +2,7 @@ $.ajax({//ajax call 1
     type:"GET",
     url:"http://shannawang.com/api/strips",
     // data:{"date":"something"},
-    success: function(data1){
+    success: function(data){
         console.log(data);
         renderStrippr(data);
     }
