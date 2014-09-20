@@ -100,6 +100,7 @@ router.route('/api/strips')
 		strip.description = req.body.description;
 		strip.title = req.body.title;
 		strip.comic = req.body.comic
+		strip.likes = 0;
 		//save the bear and check for errors
 		strip.save(function(err) {
 			if (err)
@@ -129,12 +130,11 @@ router.route('/api/strips/:strip_id')
 });
 
 
-router.route('/api/getstripbydate')
+router.route('/api/getstripsbydate')
 	.get(function(req, res){
 		var returnedStrips = [];
-		console.log(req.param);
 		var minDate = new Date("January 1, 1970 00:00:00");
-		var strip = Strip.find({ date: {$gt: minDate, $lt: req.params.date} }).sort({date: -1}).exec(function(err, docs) {
+		var strip = Strip.find({ date: {$gt: minDate, $lt: req.query.date} }).sort({date: -1}).exec(function(err, docs) {
 			res.json(docs);
 	});
 });
