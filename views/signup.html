@@ -10,8 +10,8 @@
     <div id="content">
       
       <form action='/api/users' method='post' name='signup'>
-        <input required type="text" name="username" value="" placeholder="Name" autocomplete="off" id="fname" style="position:relative">
-        <input required type="email" name="email" value="" placeholder="Email" autocomplete="off" id="email" onblur="checkEmail(this.value);" style="position:relative; left:9px">
+        <input required type="text" name="username" value="" placeholder="Name" autocomplete="off" id="fname" >
+        <input required type="email" name="email" value="" placeholder="Email" autocomplete="off" id="email" onblur="checkEmail(this.value);">
         <input required pattern=".{6,}" type="password" name="password" value="" placeholder="Password (Minimum 6 characters)" autocomplete="off" id="password">
         <input type="submit" name="submit" class="submit_form" value="Sign Up" />                   
        

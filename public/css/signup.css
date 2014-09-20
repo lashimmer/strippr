@@ -22,8 +22,8 @@ html, body {
 input[type="text"], input[type="password"], input[type="email"] {
   display:block;
   width:600px;
-  margin:5px;
-  padding:5px;
+  margin:10px;
+  padding:10px;
   border:none;
   outline:none;
   font-family:'Roboto Light';
