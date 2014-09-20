@@ -16,18 +16,20 @@ html, body {
   width: 700px;
   height:auto;
   margin: 0 auto;
+
+}
+.strip {
+  width:90%;
+  padding:10px;
+  height:auto;
+  position:relative;
   border-radius:2px;
   -webkit-border-radius:2px;
   -moz-border-radius:2px;
   -ms-border-radius:2px;
-  -moz-box-shadow:    3px 3px 5px 6px #ccc;
-  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-  box-shadow:         3px 3px 5px 6px #ccc;
-}
-.strip {
-  width:100%;
-  height:auto;
-  position:relative;
+  -moz-box-shadow:    0px 0px 5px 6px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0px 0px 5px 6px rgba(0,0,0,0.1);
+  box-shadow:         0px 0px 5px 6px rgba(0,0,0,0.1);
 }
 .pic img {
   width:100%;
