@@ -19,13 +19,20 @@ html, body {
 
 }
 
-input [type="text"], input[type="password"], input[type="email"] {
+input[type="text"], input[type="password"], input[type="email"] {
+  display:block;
   width:600px;
   margin:5px;
   padding:5px;
+  border:0;
+  font-family:'Roboto Light';
   font-size:20px;
 }
-input [type="submit"] {
+input[type="submit"] {
+  display:block;
+  height:80px;
+  width:200px;
   background-color:gray;
   color:white;
+  font-family:'Roboto Light';
 }
