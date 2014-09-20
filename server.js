@@ -42,7 +42,7 @@ router.get('/', function(req, res) {
 
 // more routes for our API will happen here
 
-router.route('/users')
+router.route('/api/users')
 
 	// create a bear (accessed at POST http://localhost:8080/api/bears)
 	.post(function(req, res) {
