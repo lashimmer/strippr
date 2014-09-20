@@ -24,4 +24,6 @@ var renderStrippr=function(data){
         '</div>'+
       '</div>'
 	};
+	$('#content').html("");
+	$('#content').append(content);
 }
