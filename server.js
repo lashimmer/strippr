@@ -36,7 +36,7 @@ router.use(function(req, res, next) {
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
 	console.log("it works");
-  res.sendfile(__dirname + '/views/index.html');
+    res.sendfile(__dirname + '/views/index.html');
 });
 
 // more routes for our API will happen here
@@ -165,7 +165,7 @@ router.route('/api/comics')
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/', router);
-
+app.use('/public', express.static(__dirname+'/public'));
 // START THE SERVER
 // =============================================================================
 app.listen(port);
