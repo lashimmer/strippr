@@ -1,13 +1,16 @@
 var mongoose     = require('mongoose');
+
+var db = mongoose.connection;
+
 var Schema       = mongoose.Schema;
 
 var StripSchema   = new Schema({
-	website: String,
-	name: String,
+	comic: String,
 	img: String,
 	date: Date,
 	description: String,
-	title: String
+	title: String,
+	link: String
 });
 
 module.exports = mongoose.model('Strip', StripSchema);
