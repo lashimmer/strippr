@@ -37,7 +37,7 @@ router.use(function(req, res, next) {
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
 	console.log("it works");
-  res.render('index.jade', { title: 'Hey', message: 'Hello there!'});
+  res.render('index', { title: 'Hey', message: 'Hello there!'});
 });
 
 // more routes for our API will happen here
