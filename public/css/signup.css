@@ -22,27 +22,29 @@ html, body {
 input[type="text"], input[type="password"], input[type="email"] {
   display:inline-block;
   width:600px;
-  margin:30px;
+  margin:20px;
   padding:15px;
   border:none;
   outline:none;
   font-family:'Roboto Light';
   font-size:16px;
 
-  -webkit-box-shadow: none;
-  box-shadow: none;
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.05);
+  box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.05);
 }
 input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
   border:0;
   outline:none;
   outline-color: transparent;
   outline-offset: 0;
+  -webkit-box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.2);
 }
 input[type="submit"] {
   display:inline-block;
   border:0;
   outline:none;
-  margin:30px;
+  margin:20px;
   padding:15px;
   background-color:gray;
   color:white;
