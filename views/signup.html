@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Strippr</title>
+    <link type="text/css" rel="stylesheet" href="../public/css/signup.css" />
+
+  </head>
+  <body>
+   
+    <div id="content">
+      
+      <form action='/api/users' method='post' name='signup'>
+        <input required type="text" name="username" value="" placeholder="Name" autocomplete="off" id="fname" style="position:relative">
+        <input required type="email" name="email" value="" placeholder="Email" autocomplete="off" id="email" onblur="checkEmail(this.value);" style="position:relative; left:9px">
+        <input required pattern=".{6,}" type="password" name="password" value="" placeholder="Password (Minimum 6 characters)" autocomplete="off" id="password">
+        <input type="submit" name="submit" class="submit_form" value="Sign Up" />                   
+       
+      </form>
+ 
+    </div>
+
+  </body>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="../public/js/request.js"></script>
+</html>
