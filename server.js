@@ -36,6 +36,11 @@ router.use(function(req, res, next) {
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
+    res.sendfile(__dirname + '/views/index.html');
+});
+
+// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
+router.get('/', function(req, res) {
 	console.log("it works");
   res.render('index', { title: 'Hey', message: 'Hello there!'});
 });
@@ -126,10 +131,15 @@ router.route('/api/strips/:strip_id')
 });
 
 
-router.route('/api/strips/getallbycomic')
+router.route('/api/getstripbydate')
 	.get(function(req, res){
-
+		var returnedStrips = [];
+		console.log(req.param);
+		var minDate = new Date("January 1, 1970 00:00:00");
+		var strip = Strip.find({ date: {$gt: minDate, $lt: req.params.date} }).sort({date: -1}).exec(function(err, docs) {
+			res.json(docs);
 	});
+});
 
 router.route('/api/comics')
 
@@ -166,7 +176,7 @@ router.route('/api/comics')
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/', router);
-
+app.use('/public', express.static(__dirname+'/public'));
 // START THE SERVER
 // =============================================================================
 app.listen(port);
