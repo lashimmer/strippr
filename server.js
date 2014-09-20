@@ -76,6 +76,67 @@ router.route('/api/users')
 		});
 	});
 
+router.route('/api/strips')
+
+	// create users
+	.post(function(req, res) {
+		console.dir(req);	
+		var strip = new Strip(); 		// create a new instance of the Bear model
+		strip.link = req.body.link;
+		strip.img = req.body.img;
+		strip.date = req.body.date;
+		strip.description = req.body.description;
+		strip.title = req.body.title;
+		strip.comic = req.body.comic
+		//save the bear and check for errors
+		strip.save(function(err) {
+			if (err)
+				res.send(err);
+
+			res.json({ message: 'Strip created!' });
+		})
+		
+	 })
+
+	// get users
+	.get(function(req, res) {
+		Strip.find(function(err, users) {
+			if (err)
+				res.send(err);
+			res.json(users);
+		});
+	});
+
+router.route('/api/comics')
+
+	// create users
+	.post(function(req, res) {
+		console.dir(req);	
+		var comic = new Comic(); 		// create a new instance of the Bear model
+		comic.name = req.body.name;
+		comic.website = req.body.website;
+		comic.description = req.body.description;
+		comic.author = req.body.author;
+
+		//save the bear and check for errors
+		comic.save(function(err) {
+			if (err)
+				res.send(err);
+
+			res.json({ message: 'Comic created!' });
+		})
+		
+	 })
+
+	// get users
+	.get(function(req, res) {
+		Comic.find(function(err, users) {
+			if (err)
+				res.send(err);
+			res.json(users);
+		});
+	});
+
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
