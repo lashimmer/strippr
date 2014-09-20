@@ -18,6 +18,11 @@ html, body {
   margin: 0 auto;
   text-align:center;
 }
+h1 {
+  text-transform:uppercase;
+  font-size:24px;
+  letter-spacing:1px;
+}
 
 input[type="text"], input[type="password"], input[type="email"] {
   display:inline-block;
@@ -77,10 +82,19 @@ input[type="submit"] {
   display:block;
   border:0;
   outline:none;
-  margin:15px;
+  margin:25px auto;
   padding:15px;
-  background-color:gray;
+  background-color:rgba(0,0,0,0.6);
   color:white;
   font-size:16px;
   font-family:'Roboto Light';
 }
+
+input[type="submit"]:hover {
+  background-color:rgba(0,0,0,0.6);
+    -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+
