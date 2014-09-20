@@ -1,4 +1,4 @@
-$.ajax({//ajax call 1
+$.ajax({//initial ajax call 
     type:"GET",
     url:"http://shannawang.com/api/strips",
     // data:{"date":"something"},
@@ -17,7 +17,7 @@ var renderStrip=function(data){
        	data[i].title+
          ' <div class="likes">'+
           '  <img src="../public/img/heart.png">'+
-          '  100'+
+          data[i].likes +
           '</div>'+
         '</div>'+
         '<div class="pic">'+
