@@ -13,7 +13,7 @@ html, body {
 }
 
 #content {
-  width:700px;
+  width: 700px;
   height:auto;
   margin: 0 auto;
   border-radius:2px;
@@ -26,6 +26,9 @@ html, body {
   height:auto;
   position:relative;
 }
+.strip img {
+  width:100%;
+}
 .head {
   position:relative;
   width:100%;
@@ -34,10 +37,11 @@ html, body {
   padding:10px 0;
 }
 .likes {
-  width:100px;
-  height:100%;
+  width: auto;
+  /* height:100%; */
   position:absolute;
-  right:0px;
+  right: 10px;
+  top: 10px;
 }
 
 

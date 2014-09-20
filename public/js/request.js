@@ -4,14 +4,15 @@ $.ajax({//ajax call 1
     // data:{"date":"something"},
     success: function(data){
         console.log(data);
-        renderStrippr(data);
+        renderStrip(data);
     }
 });
 
-var renderStrippr=function(data){
+var renderStrip=function(data){
 	var content="";
 	for (var i = 0; i < data.length; i++) {
-		content+='<div class="strip">'+
+		content +=
+		'<div class="strip">'+
         '<div class="head">'+
        	data[i].title+
          ' <div class="likes">'+
