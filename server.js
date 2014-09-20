@@ -43,7 +43,8 @@ router.route('/users')
 
 	// create a bear (accessed at POST http://localhost:8080/api/bears)
 	.post(function(req, res) {
-		console.dir(req.body);	
+		res.json({ message: 'create a user!!' });
+		// console.dir(req.body);	
 		// var user = new User(); 		// create a new instance of the Bear model
 		// user.username = req.body.name;  // set the bears name (comes from the request)
 		// user.password = req.body.password
@@ -55,8 +56,18 @@ router.route('/users')
 		// 		res.send(err);
 
 		// 	res.json({ message: 'User created!' });
-		// });
+		})
 		
+	// })
+
+	.get(function(req, res) {
+		res.json({ message: 'all the users!!' });
+		// User.find(function(err, users) {
+		// 	if (err)
+		// 		res.send(err);
+
+		// 	res.json(users);
+		// });
 	});
 
 
