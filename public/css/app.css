@@ -38,10 +38,13 @@ html, body {
 }
 .likes {
   width: auto;
-  /* height:100%; */
+  height:100%; 
   position:absolute;
   right: 10px;
   top: 10px;
+}
+.likes img {
+  vertical-align:middle;
 }
 
 

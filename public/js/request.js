@@ -16,7 +16,7 @@ var renderStrip=function(data){
         '<div class="head">'+
        	data[i].title+
          ' <div class="likes">'+
-          '  <img src="http://i.imgur.com/Y5zq7m0.png">'+
+          '  <img src="../public/img/heart.png">'+
           '  100'+
           '</div>'+
         '</div>'+
