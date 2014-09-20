@@ -76,6 +76,15 @@ router.route('/api/users')
 		});
 	});
 
+router.route('/api/users/:username')
+	.get(function(req, res) {
+		User.find( { username: req.params.username }, function(err, bear) {
+			if (err)
+				res.send(err);
+			res.json(bear);
+	});
+});
+
 router.route('/api/strips')
 
 	// create users
@@ -107,7 +116,23 @@ router.route('/api/strips')
 		});
 	});
 
+router.route('/api/strips/:strip_id')
+	.get(function(req, res) {
+		Strip.findById(req.params.strip_id, function(err, bear) {
+			if (err)
+				res.send(err);
+			res.json(bear);
+	});
+});
+
+
+router.route('/api/strips/getallbycomic')
+	.get(function(req, res){
+
+	});
+
 router.route('/api/comics')
+
 
 	// create users
 	.post(function(req, res) {
