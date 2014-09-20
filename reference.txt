@@ -1,0 +1,17 @@
+API DOCUMENTATION
+
+GET:
+./api/users
+	- gets all users in the db
+./api/comics
+	- gets all comics in the db
+./api/strips
+	- gets all strips in the db
+
+POST:
+./api/users
+	- creates a user (for user's fields, see /app/models/user.js)
+./api/comics
+	- creates a comic (for comic's fields, see /app/models/comic.js)
+./api/strips
+	- creates a strip (for strip's fields, see /app/models/strip.js)

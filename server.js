@@ -86,7 +86,8 @@ router.route('/api/strips')
 		strip.date = req.body.date;
 		strip.description = req.body.description;
 		strip.title = req.body.title;
-		strip.comic = req.body.comic
+		strip.comic = req.body.comic;
+		strip.likes = 0;
 		//save the bear and check for errors
 		strip.save(function(err) {
 			if (err)

@@ -10,7 +10,8 @@ var StripSchema   = new Schema({
 	date: Date,
 	description: String,
 	title: String,
-	link: String
+	link: String,
+	likes: Number
 });
 
 module.exports = mongoose.model('Strip', StripSchema);
