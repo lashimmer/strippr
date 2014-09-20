@@ -13,13 +13,31 @@ html, body {
 }
 
 #content {
-  width:70%;
+  width:700px;
+  height:auto;
   margin: 0 auto;
   border-radius:2px;
   -webkit-border-radius:2px;
   -moz-border-radius:2px;
   -ms-border-radius:2px;
-
+}
+.strip {
+  width:100%;
+  height:auto;
+  position:relative;
+}
+.head {
+  position:relative;
+  width:100%;
+  text-align:left;
+  font-size:20px;
+  padding:10px 0;
+}
+.likes {
+  width:100px;
+  height:100%;
+  position:absolute;
+  
 }
 
 
