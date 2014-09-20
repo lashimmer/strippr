@@ -2,7 +2,6 @@ var mongoose     = require('mongoose');
 
 var db = mongoose.Connection;
 
-db.on('error', console.error);
 db.once('open', function() {
 	var Schema       = mongoose.Schema;
 	var UserSchema   = new Schema({
