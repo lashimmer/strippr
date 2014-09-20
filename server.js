@@ -3,6 +3,11 @@
 // BASE SETUP
 // =============================================================================
 
+// add references to models
+var User     = require('./app/models/user');
+var Comic     = require('./app/models/comic');
+var Strip     = require('./app/models/strip');
+
 // call the packages we need
 var express    = require('express'); 		// call express
 var app        = express(); 				// define our app using express
@@ -19,12 +24,41 @@ var port = process.env.PORT || 8080; 		// set our port
 // =============================================================================
 var router = express.Router(); 				// get an instance of the express Router
 
+// middleware to use for all requests
+router.use(function(req, res, next) {
+	// do logging
+	console.log('Something is happening.');
+	next(); // make sure we go to the next routes and don't stop here
+});
+
+
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
 
 // more routes for our API will happen here
+
+router.route('/users')
+
+	// create a bear (accessed at POST http://localhost:8080/api/bears)
+	.post(function(req, res) {
+		console.dir(req.body);	
+		// var user = new User(); 		// create a new instance of the Bear model
+		// user.username = req.body.name;  // set the bears name (comes from the request)
+		// user.password = req.body.password
+
+
+		// save the bear and check for errors
+		// user.save(function(err) {
+		// 	if (err)
+		// 		res.send(err);
+
+		// 	res.json({ message: 'User created!' });
+		// });
+		
+	});
+
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api

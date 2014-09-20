@@ -19,4 +19,6 @@
 	link: "http://xkcd.com/1423/",
 	img: "http://imgs.xkcd.com/comics/conversation.png",
 	date: "Fri, 19 Sep 2014 04:00:00 -0000",
+	description: "Later, at home: 'Dear diary: Still can't figure out what to write here ...'",
+	title: "Conversation"
 }
