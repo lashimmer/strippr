@@ -1,0 +1,22 @@
+{ 
+	username: "ritalu",
+	password: "strippr123",
+	email: "rita.lu410@gmail.com",
+	description: "hi",
+	subscription: [],
+	favourites: []
+}
+
+{
+	website: "http://xkcd.com",
+	name: "xkcd",
+	author: "Randall Munroe",
+	description: "A webcomic of romance, sarcasm, math, and language."
+}
+
+{
+	website: "http://xkcd.com",
+	link: "http://xkcd.com/1423/",
+	img: "http://imgs.xkcd.com/comics/conversation.png",
+	date: "Fri, 19 Sep 2014 04:00:00 -0000",
+}
