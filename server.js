@@ -17,7 +17,6 @@ var bodyParser = require('body-parser');
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.set('view engine', 'html');
 var port = process.env.PORT || 80; 		// set our port
 
 
@@ -29,7 +28,6 @@ var router = express.Router(); 				// get an instance of the express Router
 // middleware to use for all requests
 router.use(function(req, res, next) {
 	// do logging
-	console.log('Something is happening.');
 	next(); // make sure we go to the next routes and don't stop here
 });
 
@@ -37,12 +35,15 @@ router.use(function(req, res, next) {
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
     res.sendfile(__dirname + '/views/index.html');
+<<<<<<< HEAD
 });
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
 	console.log("it works");
   res.render('index', { title: 'Hey', message: 'Hello there!'});
+=======
+>>>>>>> 32087f102ec3b75ed3e5518f435367d90c6d9c14
 });
 
 // more routes for our API will happen here
