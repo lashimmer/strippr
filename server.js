@@ -20,9 +20,18 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 80; 		// set our port
 
+
+var routes = require('./routes/index');
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+app.use('/', routes);
+app.use('/users', users);
+
 // ROUTES FOR OUR API
 // =============================================================================
 var router = express.Router(); 				// get an instance of the express Router
+
 
 // middleware to use for all requests
 router.use(function(req, res, next) {
