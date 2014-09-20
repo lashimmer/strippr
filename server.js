@@ -37,10 +37,8 @@ router.get('/', function(req, res) {
     res.sendfile(__dirname + '/views/index.html');
 });
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-router.get('/', function(req, res) {
-	console.log("it works");
-  res.render('index', { title: 'Hey', message: 'Hello there!'});
+router.get('/signup', function(req, res) {
+    res.sendfile(__dirname + '/views/signup.html');
 });
 
 // more routes for our API will happen here

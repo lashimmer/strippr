@@ -1,0 +1,31 @@
+
+@font-face {
+  font-family: 'Roboto Light';
+  src: url('fonts/Roboto-Light.ttf')  format('truetype')
+}
+
+html, body {
+  margin:0;
+  padding:0;
+  height:100%;
+  width:100%;
+  font-family:'Roboto Light';
+}
+
+#content {
+  width: 700px;
+  height:auto;
+  margin: 0 auto;
+
+}
+
+input [type="text"], input[type="password"], input[type="email"] {
+  width:600px;
+  margin:5px;
+  padding:5px;
+  font-size:20px;
+}
+input [type="submit"] {
+  background-color:gray;
+  color:white;
+}
