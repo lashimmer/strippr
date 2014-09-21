@@ -13,7 +13,7 @@
         $scope.formData = {};
         $scope.passCheck = "";
 
-        $scope.processForm = function() {
+        $scope.processForm = function(isValid) {
           // $http({
           //   method  : 'POST',
           //   url     : 'http://strippr.me/api/users',
@@ -33,7 +33,10 @@
           //       window.location = '/';
           //     }
           // });
-            if ($scope.formData.$invalid) {
+
+            console.log(isValid);
+
+            if (!isValid) {
               console.log("invalid");
               return;
             }
@@ -67,7 +70,7 @@
 
 
 
-      <form ng-submit="processForm()" novalidate>
+      <form ng-submit="processForm(formData.$valid)" novalidate>
 
         <input required type="text" ng-pattern="/^[a-z0-9_-]{3,16}$/" name="username" placeholder="Username" autocomplete="off" ng-model="formData.username" >
 
