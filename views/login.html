@@ -72,7 +72,7 @@
       
       <div id="results" ng-class="{vis: err}">{{message}}</div>
 
-      <form ng-submit="loginForm(loginData.$invalid)" name="loginData" novalidate>
+      <form ng-submit="loginForm()" name="loginData" novalidate>
 
 
         <input required type="text" ng-pattern="/^[a-z0-9_-]{3,16}$/" name="username" placeholder="Username" autocomplete="off" ng-model="loginData.username" >
