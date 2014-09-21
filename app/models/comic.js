@@ -6,6 +6,7 @@ var Schema       = mongoose.Schema;
 
 var ComicSchema   = new Schema({
 	website: String,
+	trunc: String,
 	name: String,
 	author: String,
 	description: String,

@@ -62,11 +62,11 @@ router.get('/:comic_id', function(req, res, next) {
   var url;
   var comic_id;
   // lookup the user in the db so we can get their profile url
-  Comic.find(comic_id, function(err, comic) {
-    if (err) return next(err);
+  Comic.find({trunc: comic_id}, function(err, comic) {
+    if (err) res.send(err);
  	
- 	var url = comic[0].website;
-  	var comic_id = url.substr(7, url.indexOf('.'));
+ 	// var url = comic[0].website;
+  // 	var comic_id = url.substr(7, url.indexOf('.'));
     res.sendfile(__dirname + '/views/comic.html');
   });
 });
@@ -285,6 +285,7 @@ router.route('/api/comics')
 		comic.website = req.body.website;
 		comic.description = req.body.description;
 		comic.author = req.body.author;
+		comic.trunc = req.body.trunc;
 
 		//save the bear and check for errors
 		comic.save(function(err) {
