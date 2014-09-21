@@ -34,6 +34,8 @@
               username : $scope.loginData.username,
               password : $scope.loginData.password
             };
+            console.log(dataObject.username);
+            console.log(dataObject.password);
 
             var response = $http.post("http://strippr.me/api/authenticate", dataObject, {});
             response.success(function(dataFromServer, status, headers, config) {
