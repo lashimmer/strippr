@@ -14,7 +14,7 @@ html, body {
 #logo {
   width:500px;
   margin:20px auto;
-
+  padding-right:60px;
 }
 #content {
   width: 700px;
