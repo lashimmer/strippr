@@ -56,7 +56,7 @@ router.get('/login', function(req, res) {
     res.sendfile(__dirname + '/views/login.html');
 });
 
-app.get('/:comic_id', function(req, res, next) {
+router.get('/:comic_id', function(req, res, next) {
   // gets the value for the named parameter user_id from the url
 
   var url;
