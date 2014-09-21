@@ -92,17 +92,17 @@ input[type="submit"] {
   outline:none;
   margin:25px auto;
   padding:15px;
-  background-color:rgba(0,0,0,0.4);
+  background-color:rgba(0,0,0,0.2);
 
   color:white;
   font-size:16px;
   font-family:'Roboto Light';
 }
-.active {
+input.active {
   cursor:pointer;
   background-color:rgba(0,0,0,0.6);
 }
-.active:hover {
+input.active:hover {
   background-color:rgba(0,0,0,0.9);
     -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
