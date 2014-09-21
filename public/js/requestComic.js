@@ -1,21 +1,22 @@
 
 $(function() {
   var path = window.location.pathname;
-  console.log(path);
-  
-  $.ajax({//initial ajax call 
+  var name = path.substr(1);
+  console.log(name);
+
+  $.ajax({//get strips for comic
       type:"GET",
-      url:"http://strippr.me/api/comic/",
-      data:{"url":"something"},
+      url:"http://strippr.me/api/getallstripsforcomic",
+      data:{"comic":name},
       success: function(data){
           console.log(data);
           renderStrip(data);
       }
   });
-  $.ajax({//initial ajax call 
+  $.ajax({//get info for comic
       type:"GET",
-      url:"http://strippr.me/api/strips",
-      // data:{"date":"something"},
+      url:"http://strippr.me/api/comics",
+      data:{"comic":name},
       success: function(data){
           console.log(data);
           renderInfo(data);
