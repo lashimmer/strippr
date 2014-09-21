@@ -12,8 +12,8 @@ module.exports = {
 	var DOMParser = require('xmldom').DOMParser;
     // polls the the rss feeds regularly
     // 2 hours
-	var interval = 7200000;
-	//var interval = 2000;
+	//var interval = 7200000;
+	var interval = 2000;
 	setInterval(function(){
     	pollAll(function(result){
    	 	});
@@ -21,7 +21,7 @@ module.exports = {
 
 	function pollAll()
 	{
-		// pollXKCD();
+		//pollXKCD();
 	}
 
 	function pollXKCD()
@@ -47,7 +47,7 @@ module.exports = {
 			for (i = 0; i < items.length; i++)
 		  	{
 		  		var strip = new Strip();
-		  		strip.comic = "http://xkcd.com";
+		  		strip.comic = "541dd2a6aac2b8d818000002";
 		  		strip.likes = 0;
 		  		var subitems = items[i].childNodes;
 		  		for (j = 0; j < subitems.length; j++){
@@ -62,6 +62,7 @@ module.exports = {
 							break;
 						case "description":
 							strip.img = subitems[j].childNodes[0].attributes[0].nodeValue;
+							console.log(strip.img);
 							strip.description = subitems[j].childNodes[0].attributes[1].nodeValue;
 							break;
 						case "pubDate":
@@ -70,7 +71,6 @@ module.exports = {
 					}
 		  		}
 		  		strips.push(strip);
-
 		  	}
 		  	var stripExists = false;
 		  	Strip.find({ img: strip.img}, function(err, strip) {

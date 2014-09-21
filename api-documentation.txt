@@ -9,9 +9,9 @@ GET:
 
 ./api/comics
 	- gets all comics in the db
-./api/subtocomic?comicwebsite=WEBSITE&username=USERNAME
+./api/subtocomic?comic_id=COMICID&username=USERNAME
 	- subs to comic
-./api/unsubfromcomic?comicwebsite=WEBSITE&username=USERNAME
+./api/unsubfromcomic?comic_id=COMICID&username=USERNAME
 	- unsubs from comic
 ./api/comics/[COMIC ID HERE]
 	- gets the single comic specified by the id
@@ -22,7 +22,6 @@ GET:
 	- likes a strip - effectively increments strip's likes by 1 and adds strip_id into username's favourites list
 ./api/unlikestrip?strip_id=STRIPID&username=USERNAME
 	- unlikes a strip (reverses what likestrip does)
-
 ./api/getstripsbydate?date=2014-09-20&number=10&username=ritalu
 	- gets (number) comics published before date for a user's subscription
 		- if username left blank, does not filter comics, else filters by user's subscriptions
