@@ -47,6 +47,11 @@ router.get('/signup', function(req, res) {
     res.sendfile(__dirname + '/views/signup.html');
 });
 
+router.get('/login', function(req, res) {
+	console.log("in login");
+    res.sendfile(__dirname + '/views/login.html');
+});
+
 // more routes for our API will happen here
 
 // routing to users
@@ -93,7 +98,7 @@ router.route('/api/users/:username')
 });
 
 router.route('/api/authenticate')
-.get(function(req, res) {
+.post(function(req, res) {
 	User.find({ username: req.query.username}, function(err, bear) {
 		if (err)
 			res.send(err);

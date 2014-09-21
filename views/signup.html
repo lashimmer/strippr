@@ -3,35 +3,75 @@
   <head>
     <title>Strippr</title>
     <link type="text/css" rel="stylesheet" href="../public/css/signup.css" />
+    <link type="text/css" rel="stylesheet" href="../public/css/valid.css" />
 
+    <script src="../public/js/angular.min.js"></script>
+    <script src="../public/js/angular-cookies.min.js"></script>
+
+    <script>
+
+      var formApp = angular.module('formApp', []);
+
+      function formController($scope, $http) {
+
+        $scope.formData = {};
+        $scope.passCheck = "";
+
+        $scope.processForm = function(isValid) {
+            if (!isValid) {
+              console.log("invalid");
+              return;
+            }
+            console.log(" Submitting form");
+            var dataObject = {
+              username : $scope.formData.username,
+              email  : $scope.formData.email,
+              password : $scope.formData.password
+            };
+
+            var responsePromise = $http.post("http://strippr.me/api/users", dataObject, {});
+            responsePromise.success(function(dataFromServer, status, headers, config) {
+              console.log("Success!");
+              window.location = '/';
+           });
+            responsePromise.error(function(data, status, headers, config) {
+              console.log("Submitting form failed!");
+           });
+     
+        };
+
+      }
+
+    </script>
   </head>
-  <body>
+  <body ng-app="formApp" ng-controller="formController">
    
     <div id="content">
       <h1> Sign Up </h1>
       
-      <form action='/api/users' method='post' id="signup">
-        <input required type="text" name="username" value="" placeholder="Username" autocomplete="off" >
-        <input required type="email" name="email" value="" placeholder="Email" autocomplete="off" >
-        <input required pattern=".{6,}" type="password" name="password" value="" placeholder="Password (Minimum 6 characters)" autocomplete="off" >
-        <input type="submit" name="submit" value="Sign Up" />                   
-       
+      <form ng-submit="processForm(formData.$valid)" name="formData" novalidate>
+
+        <input required type="text" ng-pattern="/^[a-z0-9_-]{3,16}$/" name="username" placeholder="Username" autocomplete="off" ng-model="formData.username" >
+
+        <input required type="text" ng-pattern="/@/" name="email" placeholder="Email" autocomplete="off" ng-model="formData.email">
+
+        <input required ng-minlength="6" type="password" name="password" placeholder="Password (Minimum 6 characters)" autocomplete="off" ng-model="formData.password" >
+
+        <input required type="password" name="password" placeholder="Confirm password" autocomplete="off" ng-model="passCheck" ng-class="{valid: passCheck == formData.password, invalid: passCheck != formData.password}">
+
+        <input type="submit" name="submit" value="Sign Up" ng-class="{active: formData.$valid && passCheck == formData.password}"/> 
+
+
       </form>
  
+
+
+ <!--  <pre>
+    {{ formData }}
+  </pre> -->
     </div>
 
   </body>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript">
-      $(function() {
-        $('#signup').submit(function(){
-          $.post('/api/users', function() {
-            window.location = '/';
-          });
-          return false;
-        });
-      });
-      </script>
-  </script>
+  
   
 </html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Strippr</title>
+    <link type="text/css" rel="stylesheet" href="../public/css/signup.css" />
+    <link type="text/css" rel="stylesheet" href="../public/css/focus.css" />
+
+    <script src="../public/js/angular.min.js"></script>
+    <script src="../public/js/angular-cookies.min.js"></script>
+    <script>
+
+      var loginApp = angular.module('loginApp', ['ngCookies']);
+
+      function loginController($scope, $http, $cookieStore) {
+
+        $scope.loginData = {};
+        $scope.message = "Invalid username and password combo!";
+        $scope.err = false;
+
+        var reset = function() {
+          $scope.err = true;
+
+          $scope.loginData = {};
+        }
+        $scope.loginForm = function() {
+
+            if (loginData.$invalid) {
+              console.log("invalid data");
+              reset();
+            }
+           
+            console.log(" Submitting form");
+            var dataObject = {
+              username : $scope.loginData.username,
+              password : $scope.loginData.password
+            };
+
+            var responsePromise = $http.post("http://strippr.me/api/authenticate", dataObject, {});
+            responsePromise.success(function(dataFromServer, status, headers, config) {
+              console.log("Success!");
+              console.log(dataFromServer[0]);
+              if (dataFromServer[0] == false) {
+                reset();
+              } else {
+                window.location = '/';
+                $cookieStore.put(‘loggedin’, ‘true’);
+//$cookieStore.put(‘loggedin’, ”); FOR LOGOFF
+
+              }
+              
+           });
+            responsePromise.error(function(data, status, headers, config) {
+              reset();
+
+              console.log("Submitting form failed!");
+           });
+        };
+
+      }
+
+    </script>
+  </head>
+  <body ng-app="loginApp" ng-controller="loginController">
+   
+    <div id="content">
+      <h1> Log In </h1>
+      
+      <div id="results" ng-class="{vis: err}">{{message}}</div>
+
+      <form ng-submit="loginForm()" name="loginData" novalidate>
+
+
+        <input required type="text" ng-pattern="/^[a-z0-9_-]{3,16}$/" name="username" placeholder="Username" autocomplete="off" ng-model="loginData.username" >
+
+        <input required ng-minlength="0" type="password" name="password" placeholder="Password" autocomplete="off" ng-model="loginData.password" >
+
+
+        <input type="submit" name="submit" value="Log in" class="active" /> 
+
+
+      </form>
+ 
+
+<!-- 
+  <pre>
+    {{ loginData }}
+  </pre> -->
+    </div>
+
+  </body>
+  
+  
+</html>
