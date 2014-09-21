@@ -25,10 +25,11 @@
 
               if (!data.success) {
                 // if not successful, bind errors to error variables
-                  $scope.error = true;
+                console.log("error");
 
               } else {
                 // if successful, bind success message to message
+                console.log("success");
                 window.location = '/';
               }
           });
