@@ -13,6 +13,8 @@ GET:
 	- subs to comic
 ./api/unsubfromcomic?comicwebsite=WEBSITE&username=USERNAME
 	- unsubs from comic
+./api/comics/[COMIC ID HERE]
+	- gets the single comic specified by the id
 
 ./api/strips
 	- gets all strips in the db
@@ -24,8 +26,8 @@ GET:
 ./api/getstripsbydate?date=2014-09-20&number=10&username=ritalu
 	- gets (number) comics published before date for a user's subscription
 		- if username left blank, does not filter comics, else filters by user's subscriptions
-./api/getallstripsforcomic?comic=http://xkcd.com
-	- gets all strips with that comic name
+./api/getallstripsforcomic?comic=541dd2a6aac2b8d818000002
+	- gets all strips with that comic id
 
 
 

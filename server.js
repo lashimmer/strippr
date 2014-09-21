@@ -340,8 +340,16 @@ router.route('/api/getallstripsforcomic')
 			res.send(strips);
 			});
 
-		});		
+		});
 
+router.route('/api/comics/:comic_id')
+	.get(function(req, res) {
+		Comic.findById(req.params.comic_id, function(err, bear) {
+			if (err)
+				res.send(err);
+			res.json(bear);
+	});
+});
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
