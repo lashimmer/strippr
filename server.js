@@ -103,10 +103,10 @@ router.route('/api/users/:username')
 
 router.route('/api/authenticate')
 .post(function(req, res) {
-	User.find({ username: req.query.username}, function(err, bear) {
+	User.find({ username: req.body.username}, function(err, bear) {
 		if (err)
 			res.send(err);
-		if (bear[0].password == req.query.password) {
+		if (bear[0].password == req.body.password) {
 			res.send(bear);
 		}
 		else {
