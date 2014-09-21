@@ -47,6 +47,11 @@ router.get('/signup', function(req, res) {
     res.sendfile(__dirname + '/views/signup.html');
 });
 
+router.get('/login', function(req, res) {
+	console.log("in login");
+    res.sendfile(__dirname + '/views/login.html');
+});
+
 // more routes for our API will happen here
 
 // routing to users
