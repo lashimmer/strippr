@@ -9,9 +9,9 @@
     <script src="../public/js/angular-cookies.min.js"></script>
     <script>
 
-      var loginApp = angular.module('loginApp', ['ngCookies']);
+      var loginApp = angular.module('loginApp', []);
 
-      function loginController($scope, $http, $cookieStore) {
+      function loginController($scope, $http) {
 
         $scope.loginData = {};
         $scope.message = "Invalid username and password combo!";

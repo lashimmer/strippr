@@ -7,18 +7,10 @@
     <script src="../public/js/angular-cookies.min.js"></script>
 
     <script>
-      var mainApp = angular.module('mainApp', ['ngCookies']);
+      var mainApp = angular.module('mainApp', []);
 
-      function mainController($scope, $http, $cookieStore) {
-        $scope.loggedIn = $cookieStore.get(‘loggedin’);
-        
-        if (loggedIn) {
-          console.log("logged in");
-        }
-        else {
-          console.log("logged out");
-        }
-
+      function mainController($scope, $http) {
+     
       };
 
     </script>
