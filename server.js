@@ -270,7 +270,7 @@ router.route('/api/getstripsbydate')
 					date: {$gt: minDate, $lt: req.query.date}
 					, comic : { $in : [userSubs] }
 					}).sort({date: -1}).exec(function(err, docs) {
-						console.log("docs :" +docs);
+						console.log("docs :" + docs);
 						for(i = 0; i < req.query.number; i++){
 						toReturn[i] = docs[i];
 						}
@@ -320,7 +320,8 @@ router.route('/api/subtocomic')
 		User.find( { username: req.query.username }, function(err, user) {
 			if (err)
 				res.send(err);
-			user[0].subscriptions.push(req.query.comicwebsite);
+			console.log(req.query);
+			user[0].subscriptions.push(req.query.comic_id);
 
 			user[0].save(function(err) {
 				if (err)
@@ -338,7 +339,8 @@ router.route('/api/unsubfromcomic')
 			if (err)
 				res.send(err);
 			for (i = 0; i < user[0].subscriptions.length; i++){
-				if (user[0].subscriptions[i] == req.query.comicwebsite) {
+				console.log(req.query);
+				if (user[0].subscriptions[i] == req.query.comic_id) {
 					user[0].subscriptions.splice(i, 1);
 				}
 			}
