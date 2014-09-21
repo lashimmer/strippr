@@ -65,7 +65,7 @@ app.get('/:comic_id', function(req, res, next) {
   Comic.find(comic_id, function(err, comic) {
     if (err) return next(err);
  	
- 	var url = comic.params.website;
+ 	var url = comic.body.website;
   	var comic_id = url.substr(7, url.indexOf('.'));
     res.sendfile(__dirname + '/views/comic.html');
   });
