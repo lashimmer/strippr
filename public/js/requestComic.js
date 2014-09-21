@@ -1,6 +1,9 @@
 
-var path = window.location.pathname;
-console.log(path);
+$(function() {
+  var path = window.location.pathname;
+  console.log(path);
+
+});
 
 
 $.ajax({//initial ajax call 
@@ -22,6 +25,9 @@ $.ajax({//initial ajax call
     }
 });
 
+var renderInfo = function(data) {
+
+}
 var renderStrip=function(data){
 	var content="";
 	for (var i = 0; i < data.length; i++) {
