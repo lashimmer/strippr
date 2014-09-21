@@ -78,7 +78,7 @@
         <input required type="password" name="password" placeholder="Confirm password" autocomplete="off" ng-model="passCheck" ng-class="{valid: passCheck == formData.password, invalid: passCheck != formData.password}">
 
 
-        <input type="submit" name="submit" value="Sign Up" ng-disable="formData.$invalid" ng-class="{active: formData.$valid}"/>                   
+        <input type="submit" name="submit" value="Sign Up" ng-disabled="formData.$invalid"/>                   
        
       </form>
  
