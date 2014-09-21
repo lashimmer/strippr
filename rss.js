@@ -1,6 +1,7 @@
 module.exports = {
   execute: function () {
-var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
+	var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
+	$.support.cors = true;
     // polls the the rss feeds regularly
     // 2 hours
 	//var interval = 7200000;
@@ -21,16 +22,19 @@ var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
 	{
 		console.log("polling XKCD")
 		$.ajax({
-        	url: 'http://theresidency.libsyn.com/rss',
+        	url: 'http://xkcd.com/rss.xml',
         	type: 'GET',
-        	dataType: "xml"
-    		}).done(function(xml) {
-        $.each($("item", xml), function(i, e) {
-            $("#results").append($("enclosure").attr("url").text() + "<br />");
-        });
-    });
-	}
-	}
+        	contentType: 'text/xml',
+        	dataType: 'xml',
+        	success : function(data) {
+       		console.log("SUCCESS");
+   			},
+   			error : function(data) {
+       		console.log(data);
+   			}
+    	});	
+    }
+}
 }
 
 
