@@ -18,7 +18,7 @@
 
         var reset = function() {
           $scope.err = true;
-          
+
           $scope.loginData = {};
         }
         $scope.loginForm = function() {
@@ -40,8 +40,10 @@
               console.log(dataFromServer[0]);
               if (dataFromServer[0] == false) {
                 reset();
+              } else {
+                window.location = '/';
               }
-              window.location = '/';
+              
            });
             responsePromise.error(function(data, status, headers, config) {
               reset();
