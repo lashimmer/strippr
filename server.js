@@ -329,6 +329,17 @@ router.route('/api/unsubfromcomic')
 		});		
 });
 
+router.route('/api/getallstripsforcomic')
+	.get(function(req, res) {
+		Strip.find( { comic: req.query.comic }, function(err, strips) {
+			if (err)
+				res.send(err);
+
+			res.send(strips);
+			});
+
+		});		
+
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api

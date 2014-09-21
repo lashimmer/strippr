@@ -24,6 +24,8 @@ GET:
 ./api/getstripsbydate?date=2014-09-20&number=10&username=ritalu
 	- gets (number) comics published before date for a user's subscription
 		- if username left blank, does not filter comics, else filters by user's subscriptions
+./api/getallstripsforcomic?comic=http://xkcd.com
+	- gets all strips with that comic name
 
 
 
