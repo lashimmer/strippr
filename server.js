@@ -63,7 +63,6 @@ app.get('/:comic_id', function(req, res, next) {
   // lookup the user in the db so we can get their profile url
   Comic.find(comic_id, function(err, comic) {
     if (err) return next(err);
-    if (!comic) return next(...create a 404 error...);
  
  	var url = comic.params.website;
   	var comic_id = url.substr(7, url.indexOf('.'));
