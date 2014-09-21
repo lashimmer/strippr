@@ -16,8 +16,8 @@
         $scope.processForm = function() {
           $http({
             method  : 'POST',
-            url     : '/api/users',
-            data    : $.param($scope.formData),  // pass in data as strings
+            url     : 'http:/api/users',
+            data    : ($scope.formData),  // pass in data as strings
             headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
           })
           .success(function(data) {
@@ -25,13 +25,11 @@
 
               if (!data.success) {
                 // if not successful, bind errors to error variables
-                  $scope.errorUsername = data.errors.username;
-                  $scope.errorEmail = data.errors.email;
-                  $scope.errorPassword = data.errors.password;
+                  $scope.error = true;
 
               } else {
                 // if successful, bind success message to message
-                  $scope.message = data.message;
+                window.location = '/';
               }
           });
         };
@@ -46,10 +44,9 @@
       <h1> Sign Up </h1>
       
 
-        <div id="messages" class="well" ng-show="message">{{ message }}</div>
-              <span class="help-block" ng-show="errorName">{{ errorName }}</span>
 
 
+      <form ng-submit="processForm()" novalidate>
 
         <input required type="text" ng-pattern="/^[a-z0-9_-]{3,16}$/" name="username" placeholder="Username" autocomplete="off" ng-model="formData.username" >
 
@@ -60,8 +57,9 @@
         <input required type="password" name="password" placeholder="Confirm password" autocomplete="off" ng-model="passCheck" ng-class="{valid: passCheck == formData.password, invalid: passCheck != formData.password}">
 
 
-        <button ng-disabled="myForm.$invalid" ng-click="processForm()">Sign Up</button>                   
+        <input type="submit" name="submit" value="Sign Up" ng-disable="formData.$invalid" ng-class="{active: formData.$valid}"/>                   
        
+      </form>
  
 
 

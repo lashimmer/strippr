@@ -1,6 +1,6 @@
 $.ajax({//initial ajax call 
     type:"GET",
-    url:"http://shannawang.com/api/strips",
+    url:"http://strippr.me/api/strips",
     // data:{"date":"something"},
     success: function(data){
         console.log(data);
