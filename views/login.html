@@ -16,11 +16,11 @@
         $scope.message = "Invalid username and password combo!";
         $scope.err = false;
 
-        var reset = function() {
-          $scope.err = true;
+        // var reset = function() {
+        //   $scope.err = true;
 
-          $scope.loginData = {};
-        };
+        //   $scope.loginData = {};
+        // };
         $scope.loginForm = function() {
 
             // if (isValid) {
@@ -45,8 +45,8 @@
               console.log("Success!");
               console.log(dataFromServer[0]);
               if (dataFromServer[0] == false) {
-
-                reset();
+                console.log("not found");
+               // reset();
 
               } else {
                 console.log(dataFromServer[0]);
@@ -74,12 +74,12 @@
       
       <div id="results" ng-class="{vis: err}">{{message}}</div>
 
-      <form ng-submit="loginForm()" name="loginData" novalidate>
+      <form ng-submit="loginForm()" novalidate>
 
 
-        <input type="text" name="username" placeholder="Username" autocomplete="off" ng-model="loginData.username" >
+        <input required type="text" ng-pattern="/^[a-z0-9_-]{3,16}$/"  name="username" placeholder="Username" autocomplete="off" ng-model="loginData.username" >
 
-        <input type="password" name="password" placeholder="Password" autocomplete="off" ng-model="loginData.password" >
+        <input required ng-minlength="6" type="password" name="password" placeholder="Password" autocomplete="off" ng-model="loginData.password" >
 
 
         <input type="submit" name="submit" value="Log in" class="active" /> 
