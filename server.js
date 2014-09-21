@@ -64,9 +64,9 @@ router.get('/:comic_id', function(req, res, next) {
   // lookup the user in the db so we can get their profile url
   Comic.find({trunc: comic_id}, function(err, comic) {
     if (err) res.send(err);
- 	
+ 	console.log(comic);
  	// var url = comic[0].website;
-  // 	var comic_id = url.substr(7, url.indexOf('.'));
+  	// 	var comic_id = url.substr(7, url.indexOf('.'));
     res.sendfile(__dirname + '/views/comic.html');
   });
 });
