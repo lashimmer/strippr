@@ -3,34 +3,71 @@
   <head>
     <title>Strippr</title>
     <link type="text/css" rel="stylesheet" href="../public/css/signup.css" />
+    <script src="../public/js/angular.min.js"></script>
+    <script>
 
+      var formApp = angular.module('formApp', []);
+
+      function formController($scope, $http) {
+
+        $scope.loginData = {};
+        $scope.message = "Invalid username and password combo!";
+        $scope.err = false;
+
+        $scope.processForm = function() {
+           
+            console.log(" Submitting form");
+            var dataObject = {
+              username : $scope.loginData.username,
+              password : $scope.loginData.password
+            };
+
+            var responsePromise = $http.post("http://strippr.me/api/authenticate", dataObject, {});
+            responsePromise.success(function(dataFromServer, status, headers, config) {
+              console.log("Success!");
+              console.log(dataFromServer[0]);
+              if (dataFromServer[0] == false) {
+                $scope.err = true;
+              }
+              window.location = '/';
+           });
+            responsePromise.error(function(data, status, headers, config) {
+              console.log("Submitting form failed!");
+           });
+     
+        };
+
+      }
+
+    </script>
   </head>
-  <body>
+  <body ng-app="formApp" ng-controller="formController">
    
     <div id="content">
       <h1> Log In </h1>
       
-      <form action='/api/users' method='post' id="signup">
-        <input required type="text" name="username" value="" placeholder="Username" autocomplete="off" >
-        <input required pattern=".{6,}" type="password" name="password" value="" placeholder="Password (Minimum 6 characters)" autocomplete="off" >
-        <input type="submit" name="submit" value="Log In" />                   
-       
+      <form ng-submit="processForm()" name="loginData" novalidate>
+
+        <div id="results" ng-show="err">{{message}}</div>
+
+        <input type="text" name="username" value="" placeholder="Username" ng-model="loginData.username" >
+
+        <input type="password" name="password" value="" placeholder="Password" ng-model="loginData.password" >
+
+
+        <input type="submit" name="submit" value="Log in" class="active" /> 
+
+
       </form>
  
+
+
+  <pre>
+    {{ loginData }}
+  </pre>
     </div>
 
   </body>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript">
-      $(function() {
-        $('#signup').submit(function(){
-          $.post('/api/users', function() {
-            window.location = '/';
-          });
-          return false;
-        });
-      });
-      </script>
-  </script>
+  
   
 </html>

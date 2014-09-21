@@ -93,7 +93,7 @@ router.route('/api/users/:username')
 });
 
 router.route('/api/authenticate')
-.get(function(req, res) {
+.post(function(req, res) {
 	User.find({ username: req.query.username}, function(err, bear) {
 		if (err)
 			res.send(err);
