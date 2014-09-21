@@ -9,6 +9,10 @@ GET:
 
 ./api/comics
 	- gets all comics in the db
+./api/subtocomic?comicwebsite=WEBSITE&username=USERNAME
+	- subs to comic
+./api/unsubfromcomic?comicwebsite=WEBSITE&username=USERNAME
+	- unsubs from comic
 
 ./api/strips
 	- gets all strips in the db
@@ -17,8 +21,9 @@ GET:
 ./api/unlikestrip?strip_id=STRIPID&username=USERNAME
 	- unlikes a strip (reverses what likestrip does)
 
-./api/getstripbydate?date=2014-09-20&number=10
-	- gets (number) comics published before date
+./api/getstripsbydate?date=2014-09-20&number=10&username=ritalu
+	- gets (number) comics published before date for a user's subscription
+		- if username left blank, does not filter comics, else filters by user's subscriptions
 
 
 
@@ -26,6 +31,8 @@ GET:
 POST:
 ./api/users
 	- creates a user (for user's fields, see /app/models/user.js)
+./api/authenticate
+	- authenticates the user
 ./api/comics
 	- creates a comic (for comic's fields, see /app/models/comic.js)
 ./api/strips

@@ -10,7 +10,7 @@ var UserSchema   = new Schema({
 	password: String,
 	email: String,
 	description: String,
-	subscription: Array,
+	subscriptions: Array,
 	favourites: Array
 });
 

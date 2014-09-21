@@ -225,13 +225,35 @@ router.route('/api/getstripsbydate')
 	.get(function(req, res){
 		var toReturn = [];
 		var minDate = new Date("January 1, 1970 00:00:00");
-		var strips = Strip.find({ date: {$gt: minDate, $lt: req.query.date} }).sort({date: -1}).exec(function(err, docs) {
-			for(i = 0; i < req.query.number; i++){
-			toReturn[i] = docs[i];
-			}
-			res.json(toReturn);
+		// if called without username parameter, display all comics
+		if (req.query.username == null) {
+			Strip.find({ date: {$gt: minDate, $lt: req.query.date} }).sort({date: -1}).exec(function(err, docs) {
+				for(i = 0; i < req.query.number; i++){
+				toReturn[i] = docs[i];
+				}
+				res.json(toReturn);
 
-		});
+			});
+		}
+		// if called with username, display only user's subs
+		else {
+			var userSubs;
+			User.find({ username : req.query.username}, function (err, user) {
+				userSubs = user[0].subscriptions;
+				Strip.find({ 
+					date: {$gt: minDate, $lt: req.query.date}
+					, comic : { $in : [userSubs] }
+					}).sort({date: -1}).exec(function(err, docs) {
+						console.log("docs :" +docs);
+						for(i = 0; i < req.query.number; i++){
+						toReturn[i] = docs[i];
+						}
+						res.json(toReturn);
+					});
+			});
+
+
+		}
 
 });
 
@@ -263,6 +285,45 @@ router.route('/api/comics')
 			res.json(users);
 		});
 	});
+
+
+
+router.route('/api/subtocomic')
+	.get(function(req, res) {
+		User.find( { username: req.query.username }, function(err, user) {
+			if (err)
+				res.send(err);
+			user[0].subscriptions.push(req.query.comicwebsite);
+
+			user[0].save(function(err) {
+				if (err)
+					res.send(err);
+
+				res.json({ message: 'User updated!' });
+			});
+
+		});		
+});
+
+router.route('/api/unsubfromcomic')
+	.get(function(req, res) {
+		User.find( { username: req.query.username }, function(err, user) {
+			if (err)
+				res.send(err);
+			for (i = 0; i < user[0].subscriptions.length; i++){
+				if (user[0].subscriptions[i] == req.query.comicwebsite) {
+					user[0].subscriptions.splice(i, 1);
+				}
+			}
+			user[0].save(function(err) {
+				if (err)
+					res.send(err);
+
+				res.json({ message: 'User updated!' });
+			});
+
+		});		
+});
 
 
 // REGISTER OUR ROUTES -------------------------------
