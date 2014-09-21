@@ -3,18 +3,30 @@
   <head>
     <title>Strippr</title>
     <link type="text/css" rel="stylesheet" href="../public/css/signup.css" />
+    <link type="text/css" rel="stylesheet" href="../public/css/focus.css" />
+
     <script src="../public/js/angular.min.js"></script>
     <script>
 
       var loginApp = angular.module('loginApp', []);
 
-      function formController($scope, $http) {
+      function loginController($scope, $http) {
 
         $scope.loginData = {};
         $scope.message = "Invalid username and password combo!";
         $scope.err = false;
 
-        $scope.processForm = function() {
+        var reset = function() {
+          $scope.err = true;
+          
+          $scope.loginData = {};
+        }
+        $scope.loginForm = function() {
+
+            if (loginData.$invalid) {
+              console.log("invalid data");
+              reset();
+            }
            
             console.log(" Submitting form");
             var dataObject = {
@@ -27,32 +39,34 @@
               console.log("Success!");
               console.log(dataFromServer[0]);
               if (dataFromServer[0] == false) {
-                $scope.err = true;
+                reset();
               }
               window.location = '/';
            });
             responsePromise.error(function(data, status, headers, config) {
+              reset();
+
               console.log("Submitting form failed!");
            });
-     
         };
 
       }
 
     </script>
   </head>
-  <body ng-app="loginApp" ng-controller="formController">
+  <body ng-app="loginApp" ng-controller="loginController">
    
     <div id="content">
       <h1> Log In </h1>
       
-      <form ng-submit="processForm()" name="loginData" novalidate>
+      <div id="results" ng-class="{vis: err}">{{message}}</div>
 
-        <div id="results" ng-show="err">{{message}}</div>
+      <form ng-submit="loginForm()" name="loginData" novalidate>
 
-        <input type="text" name="username" value="" placeholder="Username" ng-model="loginData.username" >
 
-        <input type="password" name="password" value="" placeholder="Password" ng-model="loginData.password" >
+        <input required type="text" ng-pattern="/^[a-z0-9_-]{3,16}$/" name="username" placeholder="Username" autocomplete="off" ng-model="loginData.username" >
+
+        <input required ng-minlength="0" type="password" name="password" placeholder="Password" autocomplete="off" ng-model="loginData.password" >
 
 
         <input type="submit" name="submit" value="Log in" class="active" /> 
@@ -61,10 +75,10 @@
       </form>
  
 
-
+<!-- 
   <pre>
     {{ loginData }}
-  </pre>
+  </pre> -->
     </div>
 
   </body>
