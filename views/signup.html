@@ -14,25 +14,40 @@
         $scope.passCheck = "";
 
         $scope.processForm = function() {
-          $http({
-            method  : 'POST',
-            url     : 'http://strippr.me/api/users',
-            data    : ($scope.formData),  // pass in data as strings
-            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
-          })
-          .success(function(data) {
-              console.log(data);
+          // $http({
+          //   method  : 'POST',
+          //   url     : 'http://strippr.me/api/users',
+          //   data    : ($scope.formData),  // pass in data as strings
+          //   headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
+          // })
+          // .success(function(data) {
+          //     console.log(data);
 
-              if (!data.success) {
-                // if not successful, bind errors to error variables
-                console.log("error");
+          //     if (!data.success) {
+          //       // if not successful, bind errors to error variables
+          //       console.log("error");
 
-              } else {
-                // if successful, bind success message to message
-                console.log("success");
-                window.location = '/';
-              }
-          });
+          //     } else {
+          //       // if successful, bind success message to message
+          //       console.log("success");
+          //       window.location = '/';
+          //     }
+          // });
+            console.log(" Submitting form");
+            var dataObject = {
+              username : $scope.formData.username,
+              email  : $scope.formData.email,
+              password : $scope.formData.password
+            };
+
+            var responsePromise = $http.post("http://strippr.me/api/users", dataObject, {});
+            responsePromise.success(function(dataFromServer, status, headers, config) {
+              console.log("yes");
+           });
+            responsePromise.error(function(data, status, headers, config) {
+              alert("Submitting form failed!");
+           });
+     
         };
 
       }
