@@ -56,6 +56,15 @@ router.get('/login', function(req, res) {
     res.sendfile(__dirname + '/views/login.html');
 });
 
+app.get('/:comic_id', function(req, res, next) {
+  // gets the value for the named parameter user_id from the url
+  var url = req.params.website;
+  var comic_id = url.substr(7, url.indexOf('.'));
+
+   res.sendfile(__dirname + '/views/comic.html');
+
+});
+
 // more routes for our API will happen here
 
 // routing to users
