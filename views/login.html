@@ -6,12 +6,11 @@
     <link type="text/css" rel="stylesheet" href="../public/css/focus.css" />
 
     <script src="../public/js/angular.min.js"></script>
-    <script src="../public/js/angular-cookies.min.js"></script>
     <script>
 
-      var loginApp = angular.module('loginApp', ['ngCookies']);
+      var loginApp = angular.module('loginApp', []);
 
-      function loginController($scope, $http, $cookieStore) {
+      function loginController($scope, $http) {
 
         $scope.loginData = {};
         $scope.message = "Invalid username and password combo!";
@@ -24,19 +23,23 @@
         }
         $scope.loginForm = function() {
 
-            if (loginData.$invalid) {
-              console.log("invalid data");
-              reset();
-            }
+            // if (isValid) {
+            //   console.log("invalid data");
+            //   reset();
+            // }
            
             console.log(" Submitting form");
             var dataObject = {
               username : $scope.loginData.username,
               password : $scope.loginData.password
             };
+            console.log(dataObject);
+            console.log(dataObject.username);
+            console.log(dataObject.password);
 
             var response = $http.post("http://strippr.me/api/authenticate", dataObject, {});
-            response.success(function(dataFromServer, status, headers, config, $cookieStore) {
+
+            response.success(function(dataFromServer, status, headers, config) {
               console.log("Success!");
               console.log(dataFromServer[0]);
               if (dataFromServer[0] == false) {
@@ -54,8 +57,6 @@
               
            });
             response.error(function(data, status, headers, config) {
-              reset();
-
               console.log("Submitting form failed!");
            });
         };
@@ -85,10 +86,10 @@
       </form>
  
 
-<!-- 
+
   <pre>
     {{ loginData }}
-  </pre> -->
+  </pre>
     </div>
 
   </body>
