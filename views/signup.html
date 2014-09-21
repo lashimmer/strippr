@@ -14,28 +14,6 @@
         $scope.passCheck = "";
 
         $scope.processForm = function(isValid) {
-          // $http({
-          //   method  : 'POST',
-          //   url     : 'http://strippr.me/api/users',
-          //   data    : ($scope.formData),  // pass in data as strings
-          //   headers : { 'Content-Type': 'application/x-www-form-urlencoded' }  
-          // })
-          // .success(function(data) {
-          //     console.log(data);
-
-          //     if (!data.success) {
-          //       // if not successful, bind errors to error variables
-          //       console.log("error");
-
-          //     } else {
-          //       // if successful, bind success message to message
-          //       console.log("success");
-          //       window.location = '/';
-          //     }
-          // });
-
-            console.log(isValid);
-
             if (!isValid) {
               console.log("invalid");
               return;
@@ -47,10 +25,10 @@
               password : $scope.formData.password
             };
 
-
             var responsePromise = $http.post("http://strippr.me/api/users", dataObject, {});
             responsePromise.success(function(dataFromServer, status, headers, config) {
-              console.log("YES");
+              console.log("Success!");
+              window.location = '/';
            });
             responsePromise.error(function(data, status, headers, config) {
               console.log("Submitting form failed!");
@@ -67,14 +45,11 @@
     <div id="content">
       <h1> Sign Up </h1>
       
-
-
-
       <form ng-submit="processForm(formData.$valid)" name="formData" novalidate>
 
         <input required type="text" ng-pattern="/^[a-z0-9_-]{3,16}$/" name="username" placeholder="Username" autocomplete="off" ng-model="formData.username" >
 
-        <input required type="text" ng-pattern="/@/" name="email" placeholder="Email" autocomplete="off" ng-model="formData.email">
+        <input required type="text" ng-pattern="^[^@]+@[^@]+\.[^@]+$" name="email" placeholder="Email" autocomplete="off" ng-model="formData.email">
 
         <input required ng-minlength="6" type="password" name="password" placeholder="Password (Minimum 6 characters)" autocomplete="off" ng-model="formData.password" >
 
@@ -87,9 +62,9 @@
  
 
 
- <pre>
+ <!--  <pre>
     {{ formData }}
-  </pre>
+  </pre> -->
     </div>
 
   </body>
