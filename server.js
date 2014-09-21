@@ -36,8 +36,8 @@ router.use(function(req, res, next) {
 });
 
 var favicon = require('serve-favicon');
+app.use(favicon(__dirname + '/public/img/favicon.ico'));
 
-app.use(express.favicon(__dirname + '/public/images/favicon.ico')); 
 
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
