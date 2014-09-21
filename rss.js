@@ -21,10 +21,8 @@ module.exports = {
 
 	function pollAll()
 	{
-		pollXKCD();
+		// pollXKCD();
 	}
-
-
 
 	function pollXKCD()
 	{
@@ -43,7 +41,7 @@ module.exports = {
 		    xml = xml.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 		    xml = xml.replace('&lt;', '<').replace('&gt;', '>');
 		    //console.log(xml);
-
+		    var strips = [];
 		    var doc = new DOMParser().parseFromString(xml);
 			items = doc.getElementsByTagName('item');
 			for (i = 0; i < items.length; i++)
@@ -64,7 +62,6 @@ module.exports = {
 							break;
 						case "description":
 							strip.img = subitems[j].childNodes[0].attributes[0].nodeValue;
-							console.log(strip.img);
 							strip.description = subitems[j].childNodes[0].attributes[1].nodeValue;
 							break;
 						case "pubDate":
@@ -72,6 +69,9 @@ module.exports = {
 							break;
 					}
 		  		}
+		  		strips.push(strip);
+
+		  	}
 		  	var stripExists = false;
 		  	Strip.find({ img: strip.img}, function(err, strip) {
 				if (err) {
@@ -86,8 +86,6 @@ module.exports = {
 		  		// strip doesn't already exist in database, insert
 		  		console.log("doesn't exist!");
 		  		strip.save();
-		  	}
-
 		  	}
 		    //console.log(items);    
 		  });
