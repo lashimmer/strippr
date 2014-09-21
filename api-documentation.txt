@@ -12,6 +12,8 @@ GET:
 
 ./api/strips
 	- gets all strips in the db
+./api/likestrip?strip_id=STRIPID&username=USERNAME
+	- likes a strip - effectively increments strip's likes by 1 and adds strip_id into username's favourites list
 
 ./api/getstripbydate?date=2014-09-20&number=10
 	- gets (number) comics published before date

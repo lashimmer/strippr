@@ -147,6 +147,40 @@ router.route('/api/strips/:strip_id')
 	});
 });
 
+router.route('/api/likestrip')
+	.get(function(req, res) {
+		Strip.findById(req.query.strip_id, function(err, strip) {
+			if (err)
+				res.send(err);
+
+			strip.likes = strip.likes + 1; 	// increment like
+
+			// save the bear
+			strip.save(function(err) {
+				if (err)
+					res.send(err);
+
+				res.json({ message: 'Strip updated!' });
+			});
+
+		});
+		User.find( { username: req.query.username }, function(err, user) {
+			if (err)
+				res.send(err);
+			user[0].favourites.push(req.query.strip_id);
+
+			console.log(user[0]);
+
+			user[0].save(function(err) {
+				if (err)
+					res.send(err);
+
+				res.json({ message: 'User updated!' });
+			});
+
+		});
+});	
+
 
 router.route('/api/getstripsbydate')
 	.get(function(req, res){
