@@ -40,11 +40,14 @@
               console.log("Success!");
               console.log(dataFromServer[0]);
               if (dataFromServer[0] == false) {
+
                 reset();
+
               } else {
+                console.log(dataFromServer[0]);
                 //$cookieStore.put(‘loggedin’, true);
 
-                window.location = '/';
+                //window.location = '/';
 //$cookieStore.put(‘loggedin’, ”); FOR LOGOFF
 
               }
