@@ -2,6 +2,10 @@
 
 // BASE SETUP
 // =============================================================================
+var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
+ 
+var rss = require('./rss');
+rss.execute();
 
 // add references to models
 var User     = require('./app/models/user');
