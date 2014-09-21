@@ -1,8 +1,8 @@
 
 $(function() {
   var path = window.location.pathname;
-  console.log(path);
-  var name = "xkcd";
+  var name = path.substr(1);
+  console.log(name);
 
   $.ajax({//get strips for comic
       type:"GET",
