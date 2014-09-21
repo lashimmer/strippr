@@ -154,6 +154,21 @@ router.route('/api/strips/:strip_id')
 
 router.route('/api/likestrip')
 	.get(function(req, res) {
+		User.find( { username: req.query.username }, function(err, user) {
+			if (err)
+				res.send(err);
+			user[0].favourites.push(req.query.strip_id);
+
+			console.log(user[0]);
+
+			user[0].save(function(err) {
+				if (err)
+					res.send(err);
+
+				res.json({ message: 'User updated!' });
+			});
+
+		});		
 		Strip.findById(req.query.strip_id, function(err, strip) {
 			if (err)
 				res.send(err);
@@ -169,22 +184,7 @@ router.route('/api/likestrip')
 			});
 
 		});
-		User.find( { username: req.query.username }, function(err, user) {
-			if (err)
-				res.send(err);
-			user[0].favourites.push(req.query.strip_id);
-
-			console.log(user[0]);
-
-			user[0].save(function(err) {
-				if (err)
-					res.send(err);
-
-				res.json({ message: 'User updated!' });
-			});
-
-		});
-});	
+});
 
 
 router.route('/api/getstripsbydate')
