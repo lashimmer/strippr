@@ -27,7 +27,7 @@ $(function() {
 
 
 var renderInfo = function(data) {
-
+  
 }
 var renderStrip=function(data){
 	var content="";
