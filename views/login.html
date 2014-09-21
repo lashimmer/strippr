@@ -35,21 +35,22 @@
               password : $scope.loginData.password
             };
 
-            var responsePromise = $http.post("http://strippr.me/api/authenticate", dataObject, {});
-            responsePromise.success(function(dataFromServer, status, headers, config) {
+            var response = $http.post("http://strippr.me/api/authenticate", dataObject, {});
+            response.success(function(dataFromServer, status, headers, config, $cookieStore) {
               console.log("Success!");
               console.log(dataFromServer[0]);
               if (dataFromServer[0] == false) {
                 reset();
               } else {
+                $cookieStore.put(‘loggedin’, true);
+
                 window.location = '/';
-                $cookieStore.put(‘loggedin’, ‘true’);
 //$cookieStore.put(‘loggedin’, ”); FOR LOGOFF
 
               }
               
            });
-            responsePromise.error(function(data, status, headers, config) {
+            response.error(function(data, status, headers, config) {
               reset();
 
               console.log("Submitting form failed!");
