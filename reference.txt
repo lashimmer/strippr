@@ -6,12 +6,16 @@ GET:
 ./api/users[USERNAME HERE]
 	- gets the single user specified by the username, returns empty object if no user by that name
 	sample call: ./api/users/ritalu
+./api/authenticate?username=USERNAME&password=PASSWORD
+	- returns user object if successful, else returns { success : false }
 
 ./api/comics
 	- gets all comics in the db
 
 ./api/strips
 	- gets all strips in the db
+./api/getstripsbydate
+
 
 
 

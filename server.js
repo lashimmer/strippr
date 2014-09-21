@@ -3,7 +3,7 @@
 // BASE SETUP
 // =============================================================================
 var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
- 
+
 var rss = require('./rss');
 rss.execute();
 
@@ -92,6 +92,20 @@ router.route('/api/users/:username')
 	});
 });
 
+router.route('/api/authenticate')
+.get(function(req, res) {
+	User.find({ username: req.query.username}, function(err, bear) {
+		if (err)
+			res.send(err);
+		if (bear[0].password == req.query.password) {
+			res.send(bear);
+		}
+		else {
+			res.json({success : false});
+		}
+	});
+});
+
 router.route('/api/strips')
 
 	// create users
@@ -149,8 +163,6 @@ router.route('/api/getstripsbydate')
 });
 
 router.route('/api/comics')
-
-
 	// create users
 	.post(function(req, res) {
 		console.dir(req);	
