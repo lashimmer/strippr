@@ -70,7 +70,7 @@
 
 
 
-      <form ng-submit="processForm(formData.$valid)" novalidate>
+      <form ng-submit="processForm(formData.$valid)" name="formData" novalidate>
 
         <input required type="text" ng-pattern="/^[a-z0-9_-]{3,16}$/" name="username" placeholder="Username" autocomplete="off" ng-model="formData.username" >
 
@@ -80,7 +80,7 @@
 
         <input required type="password" name="password" placeholder="Confirm password" autocomplete="off" ng-model="passCheck" ng-class="{valid: passCheck == formData.password, invalid: passCheck != formData.password}">
 
-        <input type="submit" name="submit" value="Sign Up" ng-class="{active: formData.username.$valid && formData.email.$valid && formData.password.$valid && passCheck == formData.password}"/> 
+        <input type="submit" name="submit" value="Sign Up" ng-class="{active: formData.$valid}"/> 
 
 
       </form>
