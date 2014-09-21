@@ -77,9 +77,9 @@
       <form ng-submit="loginForm()" name="loginData" novalidate>
 
 
-        <input required type="text" ng-pattern="/^[a-z0-9_-]{3,16}$/" name="username" placeholder="Username" autocomplete="off" ng-model="loginData.username" >
+        <input name="username" placeholder="Username" autocomplete="off" ng-model="loginData.username" >
 
-        <input required ng-minlength="0" type="password" name="password" placeholder="Password" autocomplete="off" ng-model="loginData.password" >
+        <input type="password" name="password" placeholder="Password" autocomplete="off" ng-model="loginData.password" >
 
 
         <input type="submit" name="submit" value="Log in" class="active" /> 
