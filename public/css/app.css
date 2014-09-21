@@ -16,6 +16,9 @@ html, body {
   margin:50px auto;
   padding-right:60px;
 }
+#logo img {
+  width:400px;
+}
 #content {
   width: 700px;
   height:auto;
