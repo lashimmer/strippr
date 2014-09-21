@@ -90,6 +90,18 @@
         <div class="line l3"></div>
       </div>
     </div>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script> 
+    $(function() {
+
+      $('.nav').click(function() {
+            $('.l1').toggleClass('close');
+            $('.l2').toggleClass('close');
+            $('.l3').toggleClass('close');
+            $('.menu').toggleClass('closed');
+        });
+    });
+  </script>
   </body>
   
   
