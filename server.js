@@ -231,7 +231,7 @@ router.route('/api/getstripsbydate')
 		var minDate = new Date("January 1, 1970 00:00:00");
 		// if called without username parameter, display all comics
 		if (req.query.username == null) {
-			Strip.find({ date: {$gt: minDate, $lt: req.query.date} }).sort({date: -1}).exec(function(err, docs) {
+			Strip.find({ date: {$gt: minDate, $lt: req.query.date} }).sort('-date').exec(function(err, docs) {
 				for(i = 0; i < req.query.number; i++){
 				toReturn[i] = docs[i];
 				}
