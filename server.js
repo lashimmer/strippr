@@ -106,8 +106,6 @@ router.route('/api/authenticate')
 	User.find({ username: req.body.username}, function(err, bear) {
 		if (err)
 			res.send(err);
-		console.log(bear[0].password);
-		console.log(req.body.password);
 		if (bear[0].password == req.body.password) {
 			res.send(bear);
 		}
