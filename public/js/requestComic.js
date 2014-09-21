@@ -2,28 +2,28 @@
 $(function() {
   var path = window.location.pathname;
   console.log(path);
-
+  
+  $.ajax({//initial ajax call 
+      type:"GET",
+      url:"http://strippr.me/api/comic/",
+      data:{"url":"something"},
+      success: function(data){
+          console.log(data);
+          renderStrip(data);
+      }
+  });
+  $.ajax({//initial ajax call 
+      type:"GET",
+      url:"http://strippr.me/api/strips",
+      // data:{"date":"something"},
+      success: function(data){
+          console.log(data);
+          renderInfo(data);
+      }
+  });
 });
 
 
-$.ajax({//initial ajax call 
-    type:"GET",
-    url:"http://strippr.me/api/comic/",
-    // data:{"date":"something"},
-    success: function(data){
-        console.log(data);
-        renderStrip(data);
-    }
-});
-$.ajax({//initial ajax call 
-    type:"GET",
-    url:"http://strippr.me/api/strips",
-    // data:{"date":"something"},
-    success: function(data){
-        console.log(data);
-        renderInfo(data);
-    }
-});
 
 var renderInfo = function(data) {
 
