@@ -36,7 +36,7 @@
             };
 
             var response = $http.post("http://strippr.me/api/authenticate", dataObject, {});
-            response.success(function(dataFromServer, status, headers, config, $cookieStore) {
+            response.success(function(dataFromServer, status, headers, config) {
               console.log("Success!");
               console.log(dataFromServer[0]);
               if (dataFromServer[0] == false) {
