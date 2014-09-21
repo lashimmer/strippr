@@ -11,7 +11,11 @@ html, body {
   width:100%;
   font-family:'Roboto Light';
 }
+#logo {
+  width:500px;
+  margin:20px auto;
 
+}
 #content {
   width: 700px;
   height:auto;
