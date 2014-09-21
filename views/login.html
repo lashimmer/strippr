@@ -6,7 +6,6 @@
     <link type="text/css" rel="stylesheet" href="../public/css/focus.css" />
 
     <script src="../public/js/angular.min.js"></script>
-    <script src="../public/js/angular-cookies.min.js"></script>
     <script>
 
       var loginApp = angular.module('loginApp', []);
@@ -22,12 +21,12 @@
 
           $scope.loginData = {};
         }
-        $scope.loginForm = function(isValid) {
+        $scope.loginForm = function()) {
 
-            if (isValid) {
-              console.log("invalid data");
-              reset();
-            }
+            // if (isValid) {
+            //   console.log("invalid data");
+            //   reset();
+            // }
            
             console.log(" Submitting form");
             var dataObject = {
@@ -56,8 +55,6 @@
               
            });
             response.error(function(data, status, headers, config) {
-              reset();
-
               console.log("Submitting form failed!");
            });
         };
