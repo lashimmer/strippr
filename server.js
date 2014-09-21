@@ -60,7 +60,7 @@ router.get('/:comic_id', function(req, res, next) {
   // gets the value for the named parameter user_id from the url
 
   var url;
-  var comic_id = :comic_id;
+  var comic_id = req.param('comic_id');
   // lookup the user in the db so we can get their profile url
   Comic.find({trunc: comic_id}, function(err, comic) {
     if (err) res.send(err);
