@@ -39,6 +39,8 @@
 
             var response = $http.post("http://strippr.me/api/authenticate", dataObject, {});
 
+            console.log(reponse);
+
             response.success(function(dataFromServer, status, headers, config) {
               console.log("Success!");
               console.log(dataFromServer[0]);
