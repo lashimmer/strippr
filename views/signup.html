@@ -33,6 +33,11 @@
           //       window.location = '/';
           //     }
           // });
+          console.log($scope.formData.username.$invalid);
+            if ($scope.formData.$invalid) {
+              console.log("invalid");
+              return;
+            }
             console.log(" Submitting form");
             var dataObject = {
               username : $scope.formData.username,
@@ -40,12 +45,13 @@
               password : $scope.formData.password
             };
 
+
             var responsePromise = $http.post("http://strippr.me/api/users", dataObject, {});
             responsePromise.success(function(dataFromServer, status, headers, config) {
-              console.log("yes");
+              console.log("YES");
            });
             responsePromise.error(function(data, status, headers, config) {
-              alert("Submitting form failed!");
+              console.log("Submitting form failed!");
            });
      
         };
