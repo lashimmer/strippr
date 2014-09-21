@@ -77,9 +77,9 @@
       <form ng-submit="loginForm()" name="loginData" novalidate>
 
 
-        <input type="text" name="username" placeholder="Username" autocomplete="off" ng-model="loginData.username" >
+        <input type="text" name="username" placeholder="Username" autocomplete="off" ng-model="loginData.username" ng-init="loginData.username = ''">
 
-        <input type="password" name="password" placeholder="Password" autocomplete="off" ng-model="loginData.password" >
+        <input type="password" name="password" placeholder="Password" autocomplete="off" ng-model="loginData.password" ng-init="loginData.password= ''">
 
 
         <input type="submit" name="submit" value="Log in" class="active" /> 
