@@ -85,7 +85,7 @@ module.exports = {
 		  	if (stripExists == false) {
 		  		// strip doesn't already exist in database, insert
 		  		console.log("doesn't exist!");
-		  		//strip.save();
+		  		strip.save();
 		  	}
 		    //console.log(items);    
 		  });
