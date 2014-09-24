@@ -1,5 +1,6 @@
 API DOCUMENTATION
 
+
 GET:
 ./api/users
 	- gets all users in the db
