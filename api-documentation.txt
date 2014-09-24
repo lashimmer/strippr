@@ -3,26 +3,27 @@ API DOCUMENTATION
 GET:
 ./api/users
 	- gets all users in the db
-./api/users/[USERNAME HERE]
-	- gets the single user specified by the username, returns empty object if no user by that name
-	sample call: ./api/users/ritalu
+./api/getuserbyname?username=USERNAME*************
+	- gets all users (usually only one) with the given username
+./api/users/USERID***************8
+	- gets the single user specified by user_id
 
 ./api/comics
 	- gets all comics in the db
-./api/subtocomic?comic_id=COMICID&username=USERNAME
+./api/subtocomic?comic_id=COMICID&user_id=USERID**********
 	- subs to comic
-./api/unsubfromcomic?comic_id=COMICID&username=USERNAME
+./api/unsubfromcomic?comic_id=COMICID&user_id=USERID*********
 	- unsubs from comic
-./api/comics/[COMIC ID HERE]
+./api/comics/COMICID
 	- gets the single comic specified by the id
 
 ./api/strips
 	- gets all strips in the db
-./api/likestrip?strip_id=STRIPID&username=USERNAME
+./api/likestrip?strip_id=STRIPID&user_id=USERID***********
 	- likes a strip - effectively increments strip's likes by 1 and adds strip_id into username's favourites list
-./api/unlikestrip?strip_id=STRIPID&username=USERNAME
+./api/unlikestrip?strip_id=STRIPID&user_id=USERID***********
 	- unlikes a strip (reverses what likestrip does)
-./api/getstripsbydate?date=2014-09-20&number=10&username=ritalu
+./api/getstripsbydate?date=2014-09-20&number=10&user_id=USERID**************
 	- gets (number) comics published before date for a user's subscription
 		- if username left blank, does not filter comics, else filters by user's subscriptions
 ./api/getallstripsforcomic?comic=541dd2a6aac2b8d818000002

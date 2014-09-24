@@ -114,7 +114,17 @@ router.route('/api/users')
 		});
 	});
 
-router.route('/api/users/:username')
+router.route('/api/users/:user_id')
+	.get(function(req, res) {
+		User.findById(req.params.user_id, function(err, bear) {
+			if (err)
+				res.send(err);
+			res.json(bear);
+	});
+});
+
+
+router.route('/api/getuserbyname')
 	.get(function(req, res) {
 		User.find( { username: req.params.username }, function(err, bear) {
 			if (err)
@@ -180,12 +190,12 @@ router.route('/api/strips/:strip_id')
 
 router.route('/api/likestrip')
 	.get(function(req, res) {
-		User.find( { username: req.query.username }, function(err, user) {
+		User.findById( req.query.user_id, function(err, user) {
 			if (err)
 				res.send(err);
-			user[0].favourites.push(req.query.strip_id);
+			user.favourites.push(req.query.strip_id);
 
-			user[0].save(function(err) {
+			user.save(function(err) {
 				if (err)
 					res.send(err);
 
@@ -212,16 +222,16 @@ router.route('/api/likestrip')
 
 router.route('/api/unlikestrip')
 	.get(function(req, res) {
-		User.find( { username: req.query.username }, function(err, user) {
+		User.findById(req.query.user_id, function(err, user) {
 			if (err)
 				res.send(err);
 			for (i = 0; i < user[0].favourites.length; i++){
-				if (user[0].favourites[i] == req.query.strip_id) {
-					user[0].favourites.splice(i, 1);
+				if (user.favourites[i] == req.query.strip_id) {
+					user.favourites.splice(i, 1);
 				}
 			}
 
-			user[0].save(function(err) {
+			user.save(function(err) {
 				if (err)
 					res.send(err);
 
@@ -252,7 +262,7 @@ router.route('/api/getstripsbydate')
 		var toReturn = [];
 		var minDate = new Date("January 1, 1970 00:00:00");
 		// if called without username parameter, display all comics
-		if (req.query.username == null) {
+		if (req.query.user_id == null) {
 			Strip.find({ date: {$gt: minDate, $lt: req.query.date} }).sort('-date').exec(function(err, docs) {
 				for(i = 0; i < req.query.number; i++){
 				toReturn[i] = docs[i];
@@ -264,8 +274,8 @@ router.route('/api/getstripsbydate')
 		// if called with username, display only user's subs
 		else {
 			var userSubs;
-			User.find({ username : req.query.username}, function (err, user) {
-				userSubs = user[0].subscriptions;
+			User.findById(req.query.user_id, function (err, user) {
+				userSubs = user.subscriptions;
 				Strip.find({ 
 					date: {$gt: minDate, $lt: req.query.date}
 					, comic : { $in : [userSubs] }
@@ -317,13 +327,13 @@ router.route('/api/comics')
 
 router.route('/api/subtocomic')
 	.get(function(req, res) {
-		User.find( { username: req.query.username }, function(err, user) {
+		User.findById(req.query.user_id, function(err, user) {
 			if (err)
 				res.send(err);
-			console.log(req.query);
-			user[0].subscriptions.push(req.query.comic_id);
+			//console.log(req.query);
+			user.subscriptions.push(req.query.comic_id);
 
-			user[0].save(function(err) {
+			user.save(function(err) {
 				if (err)
 					res.send(err);
 
@@ -335,16 +345,16 @@ router.route('/api/subtocomic')
 
 router.route('/api/unsubfromcomic')
 	.get(function(req, res) {
-		User.find( { username: req.query.username }, function(err, user) {
+		User.findById(req.query.user_id, function(err, user) {
 			if (err)
 				res.send(err);
-			for (i = 0; i < user[0].subscriptions.length; i++){
+			for (i = 0; i < user.subscriptions.length; i++){
 				console.log(req.query);
-				if (user[0].subscriptions[i] == req.query.comic_id) {
-					user[0].subscriptions.splice(i, 1);
+				if (user.subscriptions[i] == req.query.comic_id) {
+					user.subscriptions.splice(i, 1);
 				}
 			}
-			user[0].save(function(err) {
+			user.save(function(err) {
 				if (err)
 					res.send(err);
 
