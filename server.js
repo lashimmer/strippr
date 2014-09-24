@@ -225,7 +225,7 @@ router.route('/api/unlikestrip')
 		User.findById(req.query.user_id, function(err, user) {
 			if (err)
 				res.send(err);
-			for (i = 0; i < user.favourites.length; i++){
+			for (i = 0; i < user[0].favourites.length; i++){
 				if (user.favourites[i] == req.query.strip_id) {
 					user.favourites.splice(i, 1);
 				}
