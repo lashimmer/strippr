@@ -197,10 +197,10 @@ router.route('/api/likestrip')
 			if (err)
 				res.send(err);
 
-			strip.likes = strip.likes + 1; 	// increment like
+			strip[0].likes = strip[0].likes + 1; 	// increment like
 
 			// save the bear
-			strip.save(function(err) {
+			strip[0].save(function(err) {
 				if (err)
 					res.send(err);
 
@@ -233,10 +233,10 @@ router.route('/api/unlikestrip')
 			if (err)
 				res.send(err);
 
-			strip.likes = strip.likes - 1; 	// increment like
+			strip[0].likes = strip[0].likes - 1; 	// increment like
 
 			// save the bear
-			strip.save(function(err) {
+			strip[0].save(function(err) {
 				if (err)
 					res.send(err);
 
