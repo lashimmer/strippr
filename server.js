@@ -183,7 +183,7 @@ router.route('/api/likestrip')
 		User.find( { username: req.query.username }, function(err, user) {
 			if (err)
 				res.send(err);
-			user[0].favourites.push(req.query.strip_id);
+			user[0].favourites.push(req.query.strip_link);
 
 			user[0].save(function(err) {
 				if (err)
@@ -193,7 +193,7 @@ router.route('/api/likestrip')
 			});
 
 		});		
-		Strip.findById(req.query.strip_id, function(err, strip) {
+		Strip.find({link: req.query.strip_link}, function(err, strip) {
 			if (err)
 				res.send(err);
 
@@ -216,7 +216,7 @@ router.route('/api/unlikestrip')
 			if (err)
 				res.send(err);
 			for (i = 0; i < user[0].favourites.length; i++){
-				if (user[0].favourites[i] == req.query.strip_id) {
+				if (user[0].favourites[i] == req.query.strip_link) {
 					user[0].favourites.splice(i, 1);
 				}
 			}
@@ -229,7 +229,7 @@ router.route('/api/unlikestrip')
 			});
 
 		});		
-		Strip.findById(req.query.strip_id, function(err, strip) {
+		Strip.find({ link : req.query.strip_link }, function(err, strip) {
 			if (err)
 				res.send(err);
 
@@ -321,7 +321,7 @@ router.route('/api/subtocomic')
 			if (err)
 				res.send(err);
 			console.log(req.query);
-			user[0].subscriptions.push(req.query.comic_id);
+			user[0].subscriptions.push(req.query.comic_trunc);
 
 			user[0].save(function(err) {
 				if (err)
@@ -340,7 +340,7 @@ router.route('/api/unsubfromcomic')
 				res.send(err);
 			for (i = 0; i < user[0].subscriptions.length; i++){
 				console.log(req.query);
-				if (user[0].subscriptions[i] == req.query.comic_id) {
+				if (user[0].subscriptions[i] == req.query.comic_trunc) {
 					user[0].subscriptions.splice(i, 1);
 				}
 			}
