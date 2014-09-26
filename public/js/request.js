@@ -37,7 +37,7 @@ var renderStrip=function(data){
           data[i].comic+
           '">By: '+
           data[i].comic+
-          '</a></div>'
+          '</a></div>'+
         '</div>'
       };
       $('#content').html("");
