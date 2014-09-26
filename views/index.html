@@ -14,9 +14,12 @@
 
           var status =  $cookieStore.get("status");
           if (status == "loggedIn") {
-            var user = $cookieStore.get("user");
-            console.log("Welcome "+user);
-            load("2014-09-26","10",user);
+            var username = $cookieStore.get("username");
+            var favourites = $cookieStore.get("favourites");
+            var subscriptions = $cookieStore.get("subscriptions");
+
+            console.log("Welcome "+username);
+            load("2014-09-26","10",username);
 
           } 
           else {

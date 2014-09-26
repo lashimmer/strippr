@@ -1,17 +1,17 @@
-var load=function(date, number, user) {
+var load=function(date, number, username) {
   $.ajax({//initial ajax call 
     type:"GET",
     url:"./api/getstripsbydate",
-    data:{"date": date, "number":number, "username":user.username},
+    data:{"date": date, "number":number, "username":username},
     success: function(data){
         console.log(data);
-        renderStrip(data, user.username);
+        renderStrip(data);
     }
   });
 }
 
 
-var renderStrip=function(data, user){
+var renderStrip=function(data){
 	var content="";
 	for (var i = 0; i < data.length; i++) {
 		if (data[i] == null) {
@@ -23,11 +23,7 @@ var renderStrip=function(data, user){
           '<div class="head">'+
           data[i].title+
            ' <div class="likes">'+
-            '  <img src="../public/img/heart.png" onclick="likeStrip('+
-              data[i].link+
-              ','+
-              user+
-              ')"><span id="num_likes">'+
+            '  <img src="../public/img/heart.png")"><span id="num_likes">'+
             data[i].likes +
             '</span></div>'+
           '</div>'+
