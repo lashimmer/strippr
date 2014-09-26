@@ -28,7 +28,6 @@ html, body {
 a {
   text-decoration:none;
   color:black;
-  font-size:12px;
 }
 h1 {
   text-transform:uppercase;
@@ -95,8 +94,10 @@ h1 {
   width:100%;
   position:relative;
   color:black;
-  font-size:14px;
   text-align:right;
+}
+.more a {
+  font-size:14px;
 }
 
 
