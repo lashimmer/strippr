@@ -43,9 +43,9 @@
             response.success(function(dataFromServer, status, headers, config) {
               console.log("Success!");
 
-              if (dataFromServer[0] == false) {
+              if (dataFromServer[0] == "false") {
                 console.log("not found");
-               // reset();
+                reset();
 
               } else {
                 console.log(dataFromServer[0]);
