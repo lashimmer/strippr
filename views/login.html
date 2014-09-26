@@ -52,7 +52,9 @@
               } else {
                 console.log(dataFromServer[0]);
                 $cookieStore.put("status", "loggedIn");
-                $cookieStore.put("user", dataFromServer[0]);
+                $cookieStore.put("username", dataFromServer[0].username);
+                $cookieStore.put("favourites", dataFromServer[0].favourites);
+                $cookieStore.put("subscriptions", dataFromServer[0].subscriptions);
 
                 window.location = '/';
 //$cookieStore.put(‘loggedin’, ”); FOR LOGOFF
