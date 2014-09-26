@@ -5,13 +5,13 @@ var load=function(date, number, username) {
     data:{"date": date, "number":number, "username":username},
     success: function(data){
         console.log(data);
-        renderStrip(data);
+        renderStrip(data, username);
     }
   });
 }
 
 
-var renderStrip=function(data){
+var renderStrip=function(data, username){
 	var content="";
 	for (var i = 0; i < data.length; i++) {
 		if (data[i] == null) {
@@ -23,7 +23,11 @@ var renderStrip=function(data){
           '<div class="head">'+
           data[i].title+
            ' <div class="likes">'+
-            '  <img src="../public/img/heart.png" onclick=""><span id="num_likes">'+
+            '  <img src="../public/img/heart.png" onclick="likeStrip('+
+              data[i].link+
+              ','+
+              username+
+              ')"><span id="num_likes">'+
             data[i].likes +
             '</span></div>'+
           '</div>'+
