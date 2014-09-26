@@ -6,7 +6,7 @@ $(function() {
 
   $.ajax({//get strips for comic
       type:"GET",
-      url:"http://strippr.me/api/getallstripsforcomic",
+      url:"http://inkr.me/api/getallstripsforcomic",
       data:{"comic":name},
       success: function(data){
           console.log(data);
@@ -15,7 +15,7 @@ $(function() {
   });
   $.ajax({//get info for comic
       type:"GET",
-      url:"http://strippr.me/api/comics",
+      url:"http://inkr.me/api/comics",
       data:{"comic":name},
       success: function(data){
           console.log(data);
