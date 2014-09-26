@@ -1,14 +1,13 @@
-function() {
+var load=function(date, number, username) {
   $.ajax({//initial ajax call 
     type:"GET",
     url:"./api/strips",
-    // data:{"date":"something"},
+    data:{"date": date, "number":number, "username":username},
     success: function(data){
         console.log(data);
         renderStrip(data);
     }
   });
-
 
 }
 
