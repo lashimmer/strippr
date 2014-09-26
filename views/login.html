@@ -43,13 +43,12 @@
             response.success(function(dataFromServer, status, headers, config) {
               console.log("Success!");
 
-              if (dataFromServer[0] == "false") {
+              if (dataFromServer.success == "false") {
                 console.log("not found");
                 reset();
 
               } else {
                 console.log(dataFromServer);
-                console.log(dataFromServer[0]);
                 //$cookieStore.put(‘loggedin’, true);
 
                 //window.location = '/';
