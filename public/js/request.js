@@ -1,17 +1,17 @@
-var load=function(date, number, username) {
+var load=function(date, number, user) {
   $.ajax({//initial ajax call 
     type:"GET",
     url:"./api/getstripsbydate",
-    data:{"date": date, "number":number, "username":username},
+    data:{"date": date, "number":number, "username":user.username},
     success: function(data){
         console.log(data);
-        renderStrip(data, username);
+        renderStrip(data, user.username);
     }
   });
 }
 
 
-var renderStrip=function(data, username){
+var renderStrip=function(data, user){
 	var content="";
 	for (var i = 0; i < data.length; i++) {
 		if (data[i] == null) {
@@ -26,7 +26,7 @@ var renderStrip=function(data, username){
             '  <img src="../public/img/heart.png" onclick="likeStrip('+
               data[i].link+
               ','+
-              username+
+              user+
               ')"><span id="num_likes">'+
             data[i].likes +
             '</span></div>'+
@@ -53,7 +53,7 @@ var likeStrip=function(strip, username) {
   $.ajax({//initial ajax call 
     type:"POST",
     url:"./api/likestrip",
-    data:{"strip_link":strip, "username":username},
+    data:{"strip_link":strip, "username":user.username},
     success: function(data){
         console.log(data);
         incrementLike(true);

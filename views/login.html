@@ -52,10 +52,8 @@
               } else {
                 console.log(dataFromServer[0]);
                 $cookieStore.put("status", "loggedIn");
-                $cookieStore.put("username", dataFromServer[0].username);
+                $cookieStore.put("user", dataFromServer[0]);
 
-                var name =  $cookieStore.get("username");
-                console.log(name);
                 window.location = '/';
 //$cookieStore.put(‘loggedin’, ”); FOR LOGOFF
 

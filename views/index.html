@@ -13,14 +13,14 @@
       function mainController($scope, $http, $cookieStore) {
           var status =  $cookieStore.get("status");
           if (status == "loggedIn") {
-            var name = $cookieStore.get("username");
-            load("2014-09-26","10",name);
+            var user = $cookieStore.get("username");
+            console.log("Welcome "+user.username);
+            load("2014-09-26","10",user);
 
           } 
           else {
             window.location = '/login';
           }
-          console.log(name);
       };
 
     </script>
