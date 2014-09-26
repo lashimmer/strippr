@@ -1,9 +1,4 @@
-
-$(function() {
-  var path = window.location.pathname;
-  var name = path.substr(1);
-  console.log(name);
-
+var getComic=function(comic) {
   $.ajax({//get strips for comic
       type:"GET",
       url:"./api/getallstripsforcomic",
@@ -22,8 +17,8 @@ $(function() {
           renderInfo(data);
       }
   });
-});
-
+}
+  
 
 
 var renderInfo = function(data) {

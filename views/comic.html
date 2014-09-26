@@ -11,16 +11,34 @@
     <script>
       var mainApp = angular.module('mainApp', ['ngCookies']);
 
-      function comicController($scope, $location, $cookieStore) {
+      function comicController($scope, $location, $http, $cookieStore) {
 
-            var status =  $cookieStore.get("status");
+
+
+
+            $scope.status =  $cookieStore.get("status");
             if (status == "loggedIn") {
-              var username = $cookieStore.get("username");
-              var favourites = $cookieStore.get("favourites");
-              var subscriptions = $cookieStore.get("subscriptions");
+              $scope.username = $cookieStore.get("username");
+              $scope.favourites = $cookieStore.get("favourites");
+              $scope.subscriptions = $cookieStore.get("subscriptions");
               console.log("Welcome "+username);
 
+              $scope.comicName = $location.path();
               console.log($location.path());
+
+              
+
+              $http({
+                  url:"./api/getallstripsforcomic",
+                  method: "GET",
+                  data: {"comic":$scope.comicName}
+              }).success(function(data, status, headers, config) {
+                  $scope.comic = data;
+                  console.log($scope.comic);
+              }).error(function(data, status, headers, config) {
+                  console.log("error");
+              });
+
 
 
             } 
