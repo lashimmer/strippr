@@ -11,7 +11,7 @@
   <script>
   var mainApp = angular.module('mainApp', ['ngCookies']);
 
-  function comicController($scope, $location, $http, $cookieStore) {
+  mainApp.controller('comicController', function($scope, $location, $http, $cookieStore) {
 
     $scope.status =  $cookieStore.get("status");
 
