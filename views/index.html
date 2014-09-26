@@ -11,7 +11,10 @@
       var mainApp = angular.module('mainApp', ['ngCookies']);
 
       function mainController($scope, $http, $cookieStore) {
-          var name =  $cookieStore.get("Name");
+          var status =  $cookieStore.get("status");
+          if (status == "loggedIn") {
+            var name = $cookieStore.get("username");
+          }
           console.log(name);
       };
 
