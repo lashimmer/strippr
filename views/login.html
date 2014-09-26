@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Strippr</title>
+    <title>Inkr</title>
     <link type="text/css" rel="stylesheet" href="../public/css/signup.css" />
     <link type="text/css" rel="stylesheet" href="../public/css/focus.css" />
     <link type="text/css" rel="stylesheet" href="../public/css/nav.css" />
@@ -38,7 +38,7 @@
             console.log(dataObject.username);
             console.log(dataObject.password);
 
-            var response = $http.post("http://strippr.me/api/authenticate", dataObject, {});
+            var response = $http.post("http://inkr.me/api/authenticate", dataObject, {});
 
             response.success(function(dataFromServer, status, headers, config) {
               console.log("Success!");

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Strippr</title>
+    <title>Inkr</title>
     <link type="text/css" rel="stylesheet" href="../public/css/signup.css" />
     <link type="text/css" rel="stylesheet" href="../public/css/valid.css" />
     <link type="text/css" rel="stylesheet" href="../public/css/nav.css" />
@@ -30,7 +30,7 @@
               password : $scope.formData.password
             };
 
-            var responsePromise = $http.post("http://strippr.me/api/users", dataObject, {});
+            var responsePromise = $http.post("http://inkr.me/api/users", dataObject, {});
             responsePromise.success(function(dataFromServer, status, headers, config) {
               console.log("Success!");
               window.location = '/';
