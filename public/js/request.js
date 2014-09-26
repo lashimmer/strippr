@@ -12,6 +12,7 @@ var load=function(date, number, username) {
 
 
 var renderStrip=function(data){
+  console.log("rendering");
 	var content="";
 	for (var i = 0; i < data.length; i++) {
 		if (data[i] == null) {
