@@ -1,12 +1,17 @@
-$.ajax({//initial ajax call 
+function() {
+  $.ajax({//initial ajax call 
     type:"GET",
-    url:"http://inkr.me/api/strips",
+    url:"./api/strips",
     // data:{"date":"something"},
     success: function(data){
         console.log(data);
         renderStrip(data);
     }
-});
+  });
+
+
+}
+
 
 var renderStrip=function(data){
 	var content="";

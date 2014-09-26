@@ -23,6 +23,7 @@ GET:
 	- likes a strip - effectively increments strip's likes by 1 and adds strip_id into username's favourites list
 ./api/unlikestrip?strip_link=STRIPLINK&username=USERNAME
 	- unlikes a strip (reverses what likestrip does)
+	
 ./api/getstripsbydate?date=2014-09-20&number=10&username=ritalu
 	- gets (number) comics published before date for a user's subscription
 		- if username left blank, does not filter comics, else filters by user's subscriptions
