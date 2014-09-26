@@ -24,20 +24,27 @@
               $scope.comicName = $location.path();
               console.log($location.path());
 
-              
+              $http({
+                  url:"./api/comics",
+                  method: "GET",
+                  data: {"comic":$scope.comicName}
+              }).success(function(data, status, headers, config) {
+                  $scope.comic = data;
+                  console.log("success");
+              }).error(function(data, status, headers, config) {
+                  console.log("error");
+              });
 
               $http({
                   url:"./api/getallstripsforcomic",
                   method: "GET",
                   data: {"comic":$scope.comicName}
               }).success(function(data, status, headers, config) {
-                  $scope.comic = data;
-                  console.log($scope.comic);
+                  $scope.strips = data;
+                  console.log("success");
               }).error(function(data, status, headers, config) {
                   console.log("error");
               });
-
-
 
             } 
             else {
