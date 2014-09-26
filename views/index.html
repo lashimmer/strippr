@@ -16,6 +16,10 @@
             var name = $cookieStore.get("username");
             load("2014-09-26","10",name);
 
+          } 
+          else {
+            window.location = '/login';
+
           }
           console.log(name);
       };

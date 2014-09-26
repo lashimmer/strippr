@@ -32,11 +32,11 @@ var renderStrip=function(data){
           '"><div class="pic">'+
            ' <img src="'+data[i].img+'">'+
           '</div></a>'+
-          '<a href="/'+
+          '<div class="more"><a href="/'+
           data[i].comic+
-          '"><div class="more">'+
+          '">By: '+
           data[i].comic+
-          '</div></a>'
+          '</a></div>'
         '</div>'
       };
       $('#content').html("");
