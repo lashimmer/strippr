@@ -51,7 +51,7 @@
 
               } else {
                 console.log(dataFromServer[0]);
-                $cookieStore.put(‘loggedin’, true);
+                $cookieStore.put(‘status’, "loggedIn");
                 $cookieStore.put(‘username’, dataFromServer[0].username);
 
                 var name =  $cookieStore.get("Name");
