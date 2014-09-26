@@ -4,8 +4,8 @@
 // =============================================================================
 var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
 
-var rss = require('./rss');
-rss.execute();
+var crawler = require('./crawler');
+crawler.execute();
 
 // add references to models
 var User     = require('./app/models/user');
@@ -126,12 +126,11 @@ router.route('/api/users/:username')
 router.route('/api/authenticate')
 .post(function(req, res) {
 	User.find({ username: req.body.username}, function(err, bear) {
-		if (err)
-			res.send(err);
-		if (bear[0].password == req.body.password) {
+		if (bear[0] != null) {
+			if (bear[0].password == req.body.password) {
 			res.send(bear);
-		}
-		
+			}
+		}		
 		res.json({success : false});
 		
 	});
@@ -258,7 +257,6 @@ router.route('/api/getstripsbydate')
 				toReturn[i] = docs[i];
 				}
 				res.json(toReturn);
-
 			});
 		}
 		// if called with username, display only user's subs
