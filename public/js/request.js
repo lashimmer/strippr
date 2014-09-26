@@ -23,11 +23,11 @@ var renderStrip=function(data){
           '<div class="head">'+
           data[i].title+
            ' <div class="likes">'+
-            '  <img src="../public/img/heart.png">'+
+            '  <img src="../public/img/heart.png" onclick=""><span id="num_likes">'+
             data[i].likes +
-            '</div>'+
+            '</span></div>'+
           '</div>'+
-          '<a href="'+
+          '<a target="_blank" href="'+
           data[i].link+
           '"><div class="pic">'+
            ' <img src="'+data[i].img+'">'+
@@ -43,4 +43,23 @@ var renderStrip=function(data){
       $('#content').append(content);
     }
 		
+}
+
+var likeStrip=function(strip, username) {
+  $.ajax({//initial ajax call 
+    type:"POST",
+    url:"./api/likestrip",
+    data:{"strip_link":strip, "username":username},
+    success: function(data){
+        console.log(data);
+        incrementLike(true);
+    }
+  });
+}
+var incrementLike=function(like) {
+  if (like) {
+    console.log($('#num_likes').html);
+  } else {
+
+  }
 }
