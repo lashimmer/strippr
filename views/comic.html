@@ -22,7 +22,7 @@
       $scope.subscriptions = $cookieStore.get("subscriptions");
 
       $scope.comicName = $location.path();
-      console.log($location.path());
+      console.log("COMIC:"+$scope.comicName);
 
       $http({
         url:"./api/comics",
