@@ -14,7 +14,7 @@ var load=function(date, number, username) {
 var renderStrip=function(data){
 	var content="";
 	for (var i = 0; i < data.length; i++) {
-		if (data[i] == "null") {
+		if (data[i] == null) {
       break;
     }
     else {
