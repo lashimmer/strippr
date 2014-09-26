@@ -17,11 +17,11 @@
         $scope.message = "Invalid username and password combo!";
         $scope.err = false;
 
-        // var reset = function() {
-        //   $scope.err = true;
+        var reset = function() {
+          $scope.err = true;
 
-        //   $scope.loginData = {};
-        // };
+          $scope.loginData = {};
+        };
         $scope.loginForm = function() {
 
             // if (isValid) {
@@ -39,8 +39,6 @@
             console.log(dataObject.password);
 
             var response = $http.post("http://strippr.me/api/authenticate", dataObject, {});
-
-            console.log(response);
 
             response.success(function(dataFromServer, status, headers, config) {
               console.log("Success!");
