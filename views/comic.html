@@ -13,15 +13,13 @@
 
       function comicController($scope, $location, $http, $cookieStore) {
 
-
-
-
             $scope.status =  $cookieStore.get("status");
-            if (status == "loggedIn") {
+
+            if ($scope.status == "loggedIn") {
+
               $scope.username = $cookieStore.get("username");
               $scope.favourites = $cookieStore.get("favourites");
               $scope.subscriptions = $cookieStore.get("subscriptions");
-              console.log("Welcome "+username);
 
               $scope.comicName = $location.path();
               console.log($location.path());
