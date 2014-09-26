@@ -21,9 +21,9 @@
       $scope.favourites = $cookieStore.get("favourites");
       $scope.subscriptions = $cookieStore.get("subscriptions");
 
-      console.log("what: "+$location.path());
+      console.log("what: "+ $location.path());
       $scope.comicName = $location.path();
-      console.log("COMIC:"+$scope.comicName);
+      console.log("COMIC:"+ $scope.comicName);
 
       $http({
         url:"./api/comics",
