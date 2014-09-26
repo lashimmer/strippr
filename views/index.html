@@ -15,7 +15,7 @@
           var status =  $cookieStore.get("status");
           if (status == "loggedIn") {
             var user = $cookieStore.get("user");
-            console.log("Welcome "+user.username);
+            console.log("Welcome "+user);
             load("2014-09-26","10",user);
 
           } 
