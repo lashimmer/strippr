@@ -131,7 +131,7 @@ router.route('/api/authenticate')
 			res.send(bear);
 			}
 		}		
-		res.json({success : false});
+		res.json( {success : "false"} );
 		
 	});
 });
