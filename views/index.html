@@ -5,12 +5,14 @@
     <link type="text/css" rel="stylesheet" href="../public/css/app.css" />
     <link type="text/css" rel="stylesheet" href="../public/css/nav.css" />
     <script src="../public/js/angular.min.js"></script>
+    <script src="../public/js/angular-cookies.min.js"></script>
 
     <script>
-      var mainApp = angular.module('mainApp', []);
+      var mainApp = angular.module('mainApp', ['ngCookies']);
 
-      function mainController($scope, $http) {
-     
+      function mainController($scope, $http, $cookieStore) {
+          var name =  $cookieStore.get("Name");
+          console.log(name);
       };
 
     </script>

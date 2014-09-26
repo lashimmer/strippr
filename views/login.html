@@ -7,11 +7,13 @@
     <link type="text/css" rel="stylesheet" href="../public/css/nav.css" />
 
     <script src="../public/js/angular.min.js"></script>
+    <script src="../public/js/angular-cookies.min.js"></script>
+
     <script>
 
-      var loginApp = angular.module('loginApp', []);
+      var loginApp = angular.module('loginApp', ['ngCookies']);
 
-      function loginController($scope, $http) {
+      function loginController($scope, $http, $cookieStore) {
 
         $scope.loginData = {};
         $scope.message = "Invalid username and password combo!";
@@ -49,8 +51,11 @@
 
               } else {
                 console.log(dataFromServer[0]);
-                //$cookieStore.put(‘loggedin’, true);
+                $cookieStore.put(‘loggedin’, true);
+                $cookieStore.put(‘username’, dataFromServer[0].username);
 
+                var name =  $cookieStore.get("Name");
+                console.log(name);
                 //window.location = '/';
 //$cookieStore.put(‘loggedin’, ”); FOR LOGOFF
 
