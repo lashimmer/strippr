@@ -20,17 +20,24 @@ var renderStrip=function(data){
     else {
       content +=
         '<div class="strip">'+
-            '<div class="head">'+
-            data[i].title+
-             ' <div class="likes">'+
-              '  <img src="../public/img/heart.png">'+
-              data[i].likes +
-              '</div>'+
+          '<div class="head">'+
+          data[i].title+
+           ' <div class="likes">'+
+            '  <img src="../public/img/heart.png">'+
+            data[i].likes +
             '</div>'+
-            '<div class="pic">'+
-             ' <img src="'+data[i].img+'">'+
-            '</div>'+
-          '</div>'
+          '</div>'+
+          '<a href="'+
+          data[i].link+
+          '"><div class="pic">'+
+           ' <img src="'+data[i].img+'">'+
+          '</div></a>'+
+          '<a href="/'+
+          data[i].comic+
+          '"><div class="more">'+
+          data[i].comic+
+          '</div></a>'
+        '</div>'
       };
       $('#content').html("");
       $('#content').append(content);
