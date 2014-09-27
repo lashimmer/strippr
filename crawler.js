@@ -57,10 +57,10 @@ module.exports = {
 					});
    				}
 	    		
-	    		innerLoop(innerLoopFunction, null, findAndSave, saveIt);
-      			});
-			});
-    	}
+	    	innerLoop(innerLoopFunction, null, findAndSave, saveIt);
+      		});
+		});
+    }
 
 	// common helper functions
 		function download(url, callback) {
