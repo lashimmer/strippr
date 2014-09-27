@@ -21,15 +21,14 @@ module.exports = {
 
 	function pollAll()
 	{
-		pollGeneric("http://xkcd.com");
+		pollGeneric("http://xkcd.com", "/archive/");
 	}
 
 
 
-	function pollGeneric(baseurl)
+	function pollGeneric(baseurl, archive)
 	{
-		var endings = ["archive", "archives"];
-		var url = baseurl + "/archive/";
+		var url = baseurl + archive;
 		download(url, function(data) {
 	    	var $$ = cheerio.load(data);
 	    	$$("a").each(function(i, e) { 
