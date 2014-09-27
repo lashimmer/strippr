@@ -59,23 +59,23 @@
   </script>
 </head>
 <body ng-app="mainApp" ng-controller="comicController">
- <div id="title">{{comic.name}}</div>
+ <div id="title">{{$comic.name}}</div>
 
  <div id="content">
   <div class="strip" ng-repeat="strip in strips">
     <div class="head">
-      {{strip.title}}
+      {{$strip.title}}
       <div class="likes">
         <img src="../public/img/heart.png")><span id="num_likes">
-        {{strip.likes}}
+        {{$strip.likes}}
       </span></div>
     </div>
     <a target="_blank" href="{{strip.link}}">
       <div class="pic">
-       <img src="{{strip.img}}">
+       <img src="{{$strip.img}}">
      </div></a>
-     <div class="more"><a href="/{{strip.comic}}">By:
-      {{strip.comic}}
+     <div class="more"><a href="/{{$strip.comic}}">By:
+      {{$strip.comic}}
     </a></div>
   </div>
 </div>
