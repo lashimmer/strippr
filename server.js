@@ -2,8 +2,6 @@
 
 // BASE SETUP
 // =============================================================================
-var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
-
 var crawler = require('./crawler');
 crawler.execute();
 
