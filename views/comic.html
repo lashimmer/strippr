@@ -28,7 +28,7 @@
       $http({
         url:"./api/comics",
         method: "GET",
-        data: {"comic":$scope.comicName}
+        data: {"comic":"xkcd"}
       }).success(function(data, status, headers, config) {
         $scope.comic = data;
         console.log("success");
@@ -40,7 +40,7 @@
       $http({
         url:"./api/getallstripsforcomic",
         method: "GET",
-        data: {"comic":$scope.comicName}
+        data: {"comic":"xkcd"}
       }).success(function(data, status, headers, config) {
         $scope.strips = data;
         console.log("success");
@@ -49,7 +49,7 @@
         console.log("error");
       });
 
-    } 
+    }
     else {
       console.log("NOT LOGGED IN");
     }
