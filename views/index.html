@@ -15,6 +15,7 @@
       mainApp.controller('mainController', function($scope, $http, $cookieStore) {
 
           $scope.status =  $cookieStore.get("status");
+
           if (status == "loggedIn") {
             $scope.username = $cookieStore.get("username");
             $scope.favourites = $cookieStore.get("favourites");
@@ -25,7 +26,8 @@
 
           } 
           else {
-            window.location = '/login';
+            console.log("error");
+            //window.location = '/login';
           }
       });
 
