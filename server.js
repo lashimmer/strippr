@@ -291,6 +291,7 @@ router.route('/api/comics')
 		comic.description = req.body.description;
 		comic.author = req.body.author;
 		comic.trunc = req.body.trunc;
+		comic.archive = req.body.archive;
 
 		//save the bear and check for errors
 		comic.save(function(err) {
