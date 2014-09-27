@@ -7,19 +7,21 @@
     <script src="../public/js/angular.min.js"></script>
     <script src="../public/js/angular-cookies.min.js"></script>
 
+    <script src="../public/js/ng-infinite-scroll.min.js"></script>
+
     <script>
       var mainApp = angular.module('mainApp', ['ngCookies', 'infinite-scroll']);
 
-      function mainController($scope, $http, $cookieStore) {
+      mainApp.controller('mainController', function($scope, $http, $cookieStore) {
 
-          var status =  $cookieStore.get("status");
+          $scope.status =  $cookieStore.get("status");
           if (status == "loggedIn") {
-            var username = $cookieStore.get("username");
-            var favourites = $cookieStore.get("favourites");
-            var subscriptions = $cookieStore.get("subscriptions");
+            $scope.username = $cookieStore.get("username");
+            $scope.favourites = $cookieStore.get("favourites");
+            $scope.subscriptions = $cookieStore.get("subscriptions");
 
-            console.log("Welcome "+username);
-            load("2014-09-26","10",username);
+            console.log("Welcome " + $scope.username);
+            load("2014-09-26","10", $scope.username);
 
           } 
           else {
