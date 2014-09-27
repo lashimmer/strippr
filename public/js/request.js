@@ -40,7 +40,7 @@ var renderStrip=function(data){
           '</a></div>'+
         '</div>'
       };
-      $('#content').html("");
+
       $('#content').append(content);
     }
 		
