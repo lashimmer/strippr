@@ -40,7 +40,7 @@
             console.log(dataObject.username);
             console.log(dataObject.password);
 
-            var response = $http.post("http://inkr.me/api/authenticate", dataObject, {});
+            var response = $http.post("./api/authenticate", dataObject, {});
 
             response.success(function(dataFromServer, status, headers, config) {
               console.log("Success!");
