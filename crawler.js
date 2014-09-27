@@ -17,7 +17,7 @@ module.exports = {
  //    	pollAll(function(result){
  //   	 	});
 	// }, interval);
-	pollAll();
+	//pollAll();
 
 	function pollAll()
 	{
