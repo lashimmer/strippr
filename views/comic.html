@@ -1,99 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Inkr</title>
-    <link type="text/css" rel="stylesheet" href="../public/css/app.css" />
-    <link type="text/css" rel="stylesheet" href="../public/css/nav.css" />
+<head>
+  <title>Inkr</title>
+  <link type="text/css" rel="stylesheet" href="../public/css/app.css" />
+  <link type="text/css" rel="stylesheet" href="../public/css/nav.css" />
 
-    <script src="../public/js/angular.min.js"></script>
-    <script src="../public/js/angular-cookies.min.js"></script>
+  <script src="../public/js/angular.min.js"></script>
+  <script src="../public/js/angular-cookies.min.js"></script>
 
-    <script>
-      var mainApp = angular.module('mainApp', ['ngCookies']);
+  <script>
+  var mainApp = angular.module('mainApp', ['ngCookies']);
 
-      function comicController($scope, $location, $http, $cookieStore) {
+  mainApp.controller('comicController', function($scope, $location, $http, $cookieStore) {
 
-            $scope.status =  $cookieStore.get("status");
+    $scope.status =  $cookieStore.get("status");
 
-            if ($scope.status == "loggedIn") {
+    if ($scope.status == "loggedIn") {
 
-              $scope.username = $cookieStore.get("username");
-              $scope.favourites = $cookieStore.get("favourites");
-              $scope.subscriptions = $cookieStore.get("subscriptions");
+      $scope.username = $cookieStore.get("username");
+      $scope.favourites = $cookieStore.get("favourites");
+      $scope.subscriptions = $cookieStore.get("subscriptions");
 
-              $scope.comicName = $location.path();
-              console.log($location.path());
+      console.log("what: "+ $location.url());
+      $scope.comicName = $location.path();
+      console.log("COMIC:"+ $scope.comicName);
 
-              $http({
-                  url:"./api/comics",
-                  method: "GET",
-                  data: {"comic":$scope.comicName}
-              }).success(function(data, status, headers, config) {
-                  $scope.comic = data;
-                  console.log("success");
-              }).error(function(data, status, headers, config) {
-                  console.log("error");
-              });
+      $http({
+        url:"./api/comics",
+        method: "GET",
+        data: {"comic":"xkcd"}
+      }).success(function(data, status, headers, config) {
+        $scope.comic = data;
+        console.log("success");
+        console.log($scope.comic);
+      }).error(function(data, status, headers, config) {
+        console.log("error");
+      });
 
-              $http({
-                  url:"./api/getallstripsforcomic",
-                  method: "GET",
-                  data: {"comic":$scope.comicName}
-              }).success(function(data, status, headers, config) {
-                  $scope.strips = data;
-                  console.log("success");
-              }).error(function(data, status, headers, config) {
-                  console.log("error");
-              });
+      $http({
+        url:"./api/getallstripsforcomic",
+        method: "GET",
+        data: {"comic":"xkcd"}
+      }).success(function(data, status, headers, config) {
+        $scope.strips = data;
+        console.log("success");
+        console.log($scope.strips);
+      }).error(function(data, status, headers, config) {
+        console.log("error");
+      });
 
-            } 
-            else {
-              console.log("NOT LOGGED IN");
-            }
-        
-      };
+    }
+    else {
+      console.log("NOT LOGGED IN");
+    }
 
-    </script>
-  </head>
-  <body ng-app="mainApp" ng-controller="comicController">
-   <div id="title">Comic Title</div>
+  });
 
-    <div id="content">
-
-    </div>
-
-    <div class="menu closed">
-
-      <a href="/login">
-        Log In
-      </a>
-      <a href="/signup">
-        Sign Up
-      </a>
-      <a href="/">
-        Profile
-      </a>
-      <div class="filler"></a>
-      <div class="nav">
-        <div class="line l1"></div>
-        <div class="line l2"></div>
-        <div class="line l3"></div>
-      </div>
-    </div>
-
-    
-  </body>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script> 
-    $(function() {
-
-      $('.nav').click(function() {
-            $('.l1').toggleClass('close');
-            $('.l2').toggleClass('close');
-            $('.l3').toggleClass('close');
-            $('.menu').toggleClass('closed');
-        });
-    });
   </script>
-  <script type="text/javascript" src="../public/js/requestComic.js"></script>
+</head>
+<body ng-app="mainApp" ng-controller="comicController">
+ <div id="title">{{comic.name}}</div>
+
+ <div id="content">
+  <div class="strip" ng-repeat="strip in strips">
+    <div class="head">
+      {{strip.title}}
+      <div class="likes">
+        <img src="../public/img/heart.png")><span id="num_likes">
+        {{strip.likes}}
+      </span></div>
+    </div>
+    <a target="_blank" href="{{strip.link}}">
+      <div class="pic">
+       <img src="{{strip.img}}">
+     </div></a>
+     <div class="more"><a href="/{{strip.comic}}">By:
+      {{strip.comic}}
+    </a></div>
+  </div>
+</div>
+
+<div class="menu closed">
+
+  <a href="/login">
+    Log In
+  </a>
+  <a href="/signup">
+    Sign Up
+  </a>
+  <a href="/">
+    Profile
+  </a>
+  <div class="filler"></a>
+    <div class="nav">
+      <div class="line l1"></div>
+      <div class="line l2"></div>
+      <div class="line l3"></div>
+    </div>
+  </div>
+
+
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script> 
+$(function() {
+
+  $('.nav').click(function() {
+    $('.l1').toggleClass('close');
+    $('.l2').toggleClass('close');
+    $('.l3').toggleClass('close');
+    $('.menu').toggleClass('closed');
+  });
+});
+</script>
+<script type="text/javascript" src="../public/js/requestComic.js"></script>
 </html>
