@@ -22,43 +22,80 @@ module.exports = {
 
 	function pollAll()
 	{
-		pollGeneric("http://xkcd.com", "/archive/");
+		Comic.find(function(err, comics) {
+			if (err) {
+				console.log("err");					
+			}
+			else {
+				comics.forEach(function(comic) {
+					if (comic.trunc == "oglaf"){
+					pollGeneric(comic.website, comic.archive, comic.trunc);	
+				}
+				});
+			}
+		});
 	}
 
-
-
-	function pollGeneric(baseurl, archive)
+	function pollGeneric(baseurl, archive, trunc)
 	{
 		var url = baseurl + archive;
 		download(url, function(data) {
 	    	var $$ = cheerio.load(data);
 	    	$$("a").each(function(i, e) { 
 	    		function innerLoop(callback, strip, saveFunction, stripSave) {
-		    		if (e.attribs.title != null) {
-		    			var strip = new Strip();
-		    			strip.link = baseurl + e.attribs.href;
-		    			strip.date = e.attribs.title;
-		    			// invokes method to scrape individual links
-		    			callback(strip, saveFunction, stripSave);
+		    		var strip = new Strip();
+		    		if (e.attribs != null) {
+		    			if (e.attribs.href != null) {
+		    				// deals with absolute and relative paths
+		    				if (e.attribs.href.toString().indexOf(trunc) > -1) {
+			    				strip.link = e.attribs.href;
+			    			}
+			    			else {
+				    			strip.link = baseurl + e.attribs.href;
+			    			}
+			    			// try to pull date: at least xkcd has it in the title
+			    			if (e.attribs.title != null) {
+			    				strip.date = e.attribs.title;
+			    			}
+			    			else {
+
+			    			}
+
+				    		// invokes method to scrape individual links
+				    		//console.log(strip.link);
+			    			callback(strip, saveFunction, stripSave);
+		    			}
 		    		}
 	    		}
 	    		function innerLoopFunction(strip, saveFunction, stripSave) {
-    				download(baseurl + e.attribs.href, function(data2) {
-    					var $ = cheerio.load(data2);
-    					$("img").each(function(i, e) { 
-    						if (e.attribs.title != null) {
-    							strip.img = e.attribs.src;
-    							strip.description = e.attribs.title;
-    							strip.title = e.attribs.alt;
-    							strip.likes = 0;
-    							strip.comic = "xkcd";
-    							// save if it doesn't exist already
-								saveFunction(strip, stripSave);
-    						}
-      					});
-					});
-   				}
-	    		
+	    			// TODO: use less try catch statements
+	    			try { // this one catches the mailto illegal actions
+	    				download(strip.link, function(data2) {
+		    				try { // this one catches the parent null errors
+			    				var $ = cheerio.load(data2);
+			    				$("img").each(function(i, e) { 
+			    					if (e.attribs != null) {
+			    						if (e.attribs.title != null && e.attribs.alt != null) {
+					    					strip.img = e.attribs.src;
+					    					strip.description = e.attribs.title;
+					    					strip.title = e.attribs.alt;
+					    					strip.likes = 0;
+					    					strip.comic = trunc;
+					    					console.log(strip);
+					    					// save if it doesn't exist already
+											//saveFunction(strip, stripSave);
+			    						}
+			    					}
+			      				});	    						
+		    				}
+		    				catch (err) {
+		    					//console.log(err);
+		    				}
+						});
+	    			}
+	    			catch (error) {
+	    			}	    			
+   				}    		
 	    	innerLoop(innerLoopFunction, null, findAndSave, saveIt);
       		});
 		});
@@ -90,7 +127,7 @@ module.exports = {
     							strip.title = e.attribs.alt;
     							strip.likes = 0;
     							strip.comic = "xkcd";
-    							// save if it doesn't exist already
+    							// pass to save function to check if it already exists
 								saveFunction(strip, stripSave);
     						}
       					});
@@ -124,7 +161,6 @@ module.exports = {
 			}
 			if (returnedStrip.length == 0) {
 				console.log("NOT EXIST");
-				console.log(strip.link);
 				stripSave(strip);
 			}
 			else {
