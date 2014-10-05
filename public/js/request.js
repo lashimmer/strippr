@@ -13,13 +13,13 @@ var load=function(date, number, username) {
 
 var renderStrip=function(data){
   console.log("rendering");
-	var content="";
+
 	for (var i = 0; i < data.length; i++) {
 		if (data[i] == null) {
       break;
     }
     else {
-      content +=
+      var content =
         '<div class="strip">'+
           '<div class="head">'+
           data[i].title+
@@ -42,6 +42,7 @@ var renderStrip=function(data){
       };
 
       $('#content').append(content);
+
     }
 		
 }

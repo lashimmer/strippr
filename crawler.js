@@ -18,6 +18,7 @@ module.exports = {
  //   	 	});
 	// }, interval);
 	//pollAll();
+	//pollXKCD();
 
 	function pollAll()
 	{
@@ -121,12 +122,9 @@ module.exports = {
 			if (err) {
 				console.log("err");					
 			}
-			// console.log(strip);
-			// console.log(returnedStrip);
 			if (returnedStrip.length == 0) {
-				//console.log(strip);
 				console.log("NOT EXIST");
-				//console.log(strip);
+				console.log(strip.link);
 				stripSave(strip);
 			}
 			else {
