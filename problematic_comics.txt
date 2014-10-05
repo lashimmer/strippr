@@ -1,0 +1,8 @@
+meek - picks up next comic buttons
+gunnerkrigg - not in db, doesn't have links to each comic directly on archive page
+smbc-comics - comic img doesn't have any attribs to distinguish it from other imgs
+harkavagrant - diagnose later
+
+nedroid, oglaf - missing date
+
+xkcd - PERFECT

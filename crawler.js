@@ -28,17 +28,17 @@ module.exports = {
 			}
 			else {
 				comics.forEach(function(comic) {
-					if (comic.trunc == "oglaf"){
-					pollGeneric(comic.website, comic.archive, comic.trunc);	
+					if (comic.trunc == "harkavagrant"){
+					pollGeneric(comic);	
 				}
 				});
 			}
 		});
 	}
 
-	function pollGeneric(baseurl, archive, trunc)
+	function pollGeneric(comic)
 	{
-		var url = baseurl + archive;
+		var url = comic.website + comic.archive;
 		download(url, function(data) {
 	    	var $$ = cheerio.load(data);
 	    	$$("a").each(function(i, e) { 
@@ -47,11 +47,11 @@ module.exports = {
 		    		if (e.attribs != null) {
 		    			if (e.attribs.href != null) {
 		    				// deals with absolute and relative paths
-		    				if (e.attribs.href.toString().indexOf(trunc) > -1) {
+		    				if (e.attribs.href.toString().indexOf(comic.trunc) > -1) {
 			    				strip.link = e.attribs.href;
 			    			}
 			    			else {
-				    			strip.link = baseurl + e.attribs.href;
+				    			strip.link = comic.website + e.attribs.href;
 			    			}
 			    			// try to pull date: at least xkcd has it in the title
 			    			if (e.attribs.title != null) {
@@ -60,7 +60,6 @@ module.exports = {
 			    			else {
 
 			    			}
-
 				    		// invokes method to scrape individual links
 				    		//console.log(strip.link);
 			    			callback(strip, saveFunction, stripSave);
@@ -75,14 +74,15 @@ module.exports = {
 			    				var $ = cheerio.load(data2);
 			    				$("img").each(function(i, e) { 
 			    					if (e.attribs != null) {
-			    						if (e.attribs.title != null && e.attribs.alt != null) {
+			    						// try looking for images with titles first
+			    						if (e.attribs.title != null) {
 					    					strip.img = e.attribs.src;
 					    					strip.description = e.attribs.title;
 					    					strip.title = e.attribs.alt;
 					    					strip.likes = 0;
-					    					strip.comic = trunc;
+					    					strip.comic = comic.trunc;
 					    					console.log(strip);
-					    					// save if it doesn't exist already
+					    					// save goes inside if/else loop to avoid saving things that don't match
 											//saveFunction(strip, stripSave);
 			    						}
 			    					}
