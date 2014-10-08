@@ -22,11 +22,11 @@
             $scope.subscriptions = $cookieStore.get("subscriptions");
 
             console.log("Welcome " + $scope.username);
-            load("2014-09-26","10", $scope.username);
+            load(new Date(),"10", $scope.username);
 
           } 
           else {
-            load("2014-09-26", "10", "");
+            load(new Date(), "10", "");
             console.log("not logged in");
             //window.location = '/login';
           }
