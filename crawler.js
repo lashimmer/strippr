@@ -10,15 +10,14 @@ module.exports = {
 	// $.support.cors = true;
 	var cheerio = require("cheerio");
 
-    // polls the the rss feeds regularly
-    // 2 hours
-	//var interval = 7200000;
-	// setInterval(function(){
- //    	pollAll(function(result){
- //   	 	});
-	// }, interval);
-	//pollAll();
-	//pollXKCD();
+    // polls the comics regularly
+    // 24 hours
+	var interval = 86400000;
+	setInterval(function(){
+    	pollAll(function(result){
+   	 	});
+	}, interval);
+	//pollAllPast();
 
 	function pollAll()
 	{
@@ -28,8 +27,24 @@ module.exports = {
 			}
 			else {
 				comics.forEach(function(comic) {
-					if (comic.trunc == "harkavagrant"){
+					if (comic.trunc == "nedroid" || comic.trunc == "xkcd"){
 					pollGeneric(comic);	
+				}
+				});
+			}
+		});
+	}
+
+	function pollAllPast()
+	{
+		Comic.find(function(err, comics) {
+			if (err) {
+				console.log("err");					
+			}
+			else {
+				comics.forEach(function(comic) {
+					if (comic.trunc == "nedroid"){
+					pollGenericPast(comic);	
 				}
 				});
 			}
@@ -104,6 +119,8 @@ module.exports = {
 // makes up a date that enforce the rough chronological ordering
     function pollGenericPast(comic)
 	{
+		// arbitrary start date
+		var start = new Date(2007, 6, 1, 0, 0, 0, 0);
 		var url = comic.website + comic.archive;
 		download(url, function(data) {
 	    	var $$ = cheerio.load(data);
@@ -124,7 +141,10 @@ module.exports = {
 			    				strip.date = e.attribs.title;
 			    			}
 			    			else {
-			    				
+			    				strip.date = start;
+			    				// to add, subtract negative number(WHY DOES ADDITION NOT WORK?!)
+			    				// to subtract, proceed like a sane person would
+			    				start = start - (-345600000);
 			    			}
 				    		// invokes method to scrape individual links
 				    		//console.log(strip.link);
@@ -149,7 +169,7 @@ module.exports = {
 					    					strip.comic = comic.trunc;
 					    					console.log(strip);
 					    					// save goes inside if/else loop to avoid saving things that don't match
-											//saveFunction(strip, stripSave);
+											saveFunction(strip, stripSave);
 			    						}
 			    					}
 			      				});	    						
