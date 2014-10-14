@@ -11,8 +11,8 @@ module.exports = {
 	var cheerio = require("cheerio");
 
     // polls the comics regularly
-    // 24 hours
-	var interval = 86400000;
+    // 12 hours
+	var interval = 86400000/2;
 	setInterval(function(){
     	pollAll(function(result){
    	 	});
@@ -43,7 +43,7 @@ module.exports = {
 			}
 			else {
 				comics.forEach(function(comic) {
-					if (comic.trunc == "nedroid"){
+					if (comic.trunc == "nedroid" || comic.trunc =="xkcd"){
 					pollGenericPast(comic);	
 				}
 				});
@@ -99,7 +99,7 @@ module.exports = {
 					    					strip.comic = comic.trunc;
 					    					console.log(strip);
 					    					// save goes inside if/else loop to avoid saving things that don't match
-											//saveFunction(strip, stripSave);
+											saveFunction(strip, stripSave);
 			    						}
 			    					}
 			      				});	    						
