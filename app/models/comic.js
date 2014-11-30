@@ -10,6 +10,7 @@ var ComicSchema   = new Schema({
 	name: String,
 	author: String,
 	description: String,
+	archive: String,
 });
 
 module.exports = mongoose.model('Comic', ComicSchema);

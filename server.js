@@ -2,8 +2,6 @@
 
 // BASE SETUP
 // =============================================================================
-var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
-
 var crawler = require('./crawler');
 crawler.execute();
 
@@ -251,7 +249,7 @@ router.route('/api/getstripsbydate')
 		var toReturn = [];
 		var minDate = new Date("January 1, 1970 00:00:00");
 		// if called without username parameter, display all comics
-		if (req.query.username == null) {
+		if (req.query.username == null || req.query.username == "") {
 			Strip.find({ date: {$gt: minDate, $lt: req.query.date} }).sort('-date').exec(function(err, docs) {
 				for(i = 0; i < req.query.number; i++){
 				toReturn[i] = docs[i];
@@ -261,6 +259,7 @@ router.route('/api/getstripsbydate')
 		}
 		// if called with username, display only user's subs
 		else {
+			console.log(req.query.username);
 			var userSubs;
 			User.find({ username : req.query.username}, function (err, user) {
 				userSubs = user[0].subscriptions;
@@ -291,6 +290,7 @@ router.route('/api/comics')
 		comic.description = req.body.description;
 		comic.author = req.body.author;
 		comic.trunc = req.body.trunc;
+		comic.archive = req.body.archive;
 
 		//save the bear and check for errors
 		comic.save(function(err) {
